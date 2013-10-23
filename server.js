@@ -23,7 +23,6 @@ var github = new GitHubApi({
     timeout: 5000
 });
 
-var oAuthToken;
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -52,7 +51,10 @@ passport.use(new GitHubStrategy({
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
-    oAuthToken = accessToken;
+    github.authenticate({
+        type: "oauth",
+        token: accessToken
+    });
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
@@ -129,11 +131,6 @@ app.get('/logout', function(req, res){
 
 app.post('/save', function(req, res) {
   console.log(req.body.gistName);
-  
-  github.authenticate({
-    type: "oauth",
-    token: oAuthToken
-  });
   
   github.gists.create(
     {
