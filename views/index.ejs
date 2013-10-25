@@ -14,8 +14,36 @@
       function ChatController($scope) {
         $scope.messages = [];
         $scope.projects = [];
+        $scope.project = '';
         $scope.name = '';
         $scope.text = '';
+        
+        $scope.display_project = function display_project(project) {
+            $.ajax({
+                url: "/display_project",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({contentPath: project.contentPath}),
+                contentType: "application/json",
+                cache: false,
+                timeout: 5000,
+                complete: function() {
+                  //called when complete
+                  console.log('process complete');
+                },
+            
+                success: function(data) {
+                    $scope.$apply( function () {
+                      console.log(data);
+                      console.log('process sucess');
+                    });
+                },
+            
+                error: function() {
+                  console.log('process error');
+                },
+            }); 
+        }
         
         $scope.my_projects = function my_projects() {
             $.ajax({
@@ -113,7 +141,7 @@
         <div class="span3">
           <ul class="nav nav-list well">
             <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
-            <li ng-repeat="project in projects" ng-bind="project.name">
+            <li ng-repeat="project in projects" ng-bind="project.name" ng-click="display_project(project)">
             </li>
           </ul>
         </div>

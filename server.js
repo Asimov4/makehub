@@ -1,9 +1,8 @@
 //
-// # SimpleServer
-//
-// A simple chat server using Socket.IO, Express, and Async.
+// # MakeHub server
 //
 var http = require('http');
+var https = require('https');
 var path = require('path');
 
 var async = require('async');
@@ -151,6 +150,29 @@ app.post('/save', function(req, res) {
     });
 });
 
+app.post('/display_project', function(req, res) {
+    console.log(req.body.contentPath);
+  
+    // get content
+    var options = {
+      accept: '*/*',
+      host: 'gist.github.com',
+      port: 443,
+      path: '/Asimov4/7149187/raw/b224aa5d579821503da4378be4740ef348a90e16/My%20Arduino%20Project',
+      method: 'GET'
+    };
+    
+    https.request(options, function(res2) {
+        console.log('STATUS: ' + res.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res2.headers));
+        res2.setEncoding('utf8');
+        res2.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
+            res.send({ content: chunk });
+        });
+    }).end();
+});
+
 app.post('/my_projects', function(req, res) {
   github.gists.getFromUser(
         {
@@ -162,10 +184,10 @@ app.post('/my_projects', function(req, res) {
             var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
             res2.forEach(function(gist,index) {
                if (gist.description == MAKEHUB_PROJECT_FLAG) {
-                   var project = {};
-                   console.log(_.keys(gist.files));
-                   project.name = _.keys(gist.files)[0];
-                   makeHubProjects.push(project);
+                    var project = {};
+                    project.name = _.keys(gist.files)[0];
+                    project.contentPath = gist.files[project.name].raw_url.replace("https://gist.github.com","");
+                    makeHubProjects.push(project);
                }
             });
             res.send({ projects: makeHubProjects });
