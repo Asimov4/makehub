@@ -19,6 +19,18 @@ var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 var credentials = require('./credentials');
 var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
 var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
+var HOST_NAME = 'https://makehub3-c9-devnook.c9.io';
+
+process.argv.forEach(function(val, index, array) {
+  if (val.split('=')[0] == '--github_client_id') {
+    GITHUB_CLIENT_ID = val.split('=')[1];  
+  }
+  if (val.split('=')[0] == '--github_client_secret') {
+    GITHUB_CLIENT_SECRET = val.split('=')[1];  
+  }
+});
+console.log('Running application with GITHUB_CLIENT_ID = ' + GITHUB_CLIENT_ID);
+console.log('Running application with GITHUB_CLIENT_SECRET = ' + GITHUB_CLIENT_SECRET);
 
 var github = new GitHubApi({
     // required
@@ -26,7 +38,6 @@ var github = new GitHubApi({
     // optional
     timeout: 5000
 });
-
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -51,7 +62,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://makehub2-c9-asimov4.c9.io/auth/github/callback",
+    callbackURL: HOST_NAME + "/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
