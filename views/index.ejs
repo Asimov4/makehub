@@ -14,7 +14,7 @@
       function ChatController($scope) {
         $scope.messages = [];
         $scope.projects = [];
-        $scope.project = '';
+        $scope.content = '';
         $scope.name = '';
         $scope.text = '';
         
@@ -35,6 +35,7 @@
                 success: function(data) {
                     $scope.$apply( function () {
                       console.log(data);
+                      $scope.content = data.content;
                       console.log('process sucess');
                     });
                 },
@@ -144,6 +145,9 @@
             <li ng-repeat="project in projects" ng-bind="project.name" ng-click="display_project(project)">
             </li>
           </ul>
+        </div>
+        <div class="span9">
+            <p>{{content}}</p>
         </div>
         <div class="span9">
           <table class="table table-striped table-bordered">

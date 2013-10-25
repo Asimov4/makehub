@@ -158,7 +158,7 @@ app.post('/display_project', function(req, res) {
       accept: '*/*',
       host: 'gist.github.com',
       port: 443,
-      path: '/Asimov4/7149187/raw/b224aa5d579821503da4378be4740ef348a90e16/My%20Arduino%20Project',
+      path: req.body.contentPath,
       method: 'GET'
     };
     
@@ -168,7 +168,9 @@ app.post('/display_project', function(req, res) {
         res2.setEncoding('utf8');
         res2.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            res.send({ content: chunk });
+            var projectHTML = chunk.replace("\n","<br>");
+            // do some other nice parsing here
+            res.send({ content: projectHTML });
         });
     }).end();
 });
