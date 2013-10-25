@@ -1,10 +1,22 @@
 {
-  "name": "chat-example",
-  "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server",
+  "name": "makehub",
+  "version": "1.0.0",
+  "description": "Github for maker projects",
   "main": "server.js",
   "repository": "",
-  "author": "Mostafa Eweda <mostafa@c9.io>",
+  "author": {
+    "name": "Thibaut Labarre",
+    "email": "asimov4@gmail.comg",
+    "url":  "http://www.openshift.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitub.com/openshift/origin-server"
+  },
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
   "dependencies": {
     "async": "~0.2.8",
     "express": "~3.2.4",
@@ -14,5 +26,9 @@
     "passport-github": ">= 0.0.0",
     "ejs-locals": "~1.0.2",
     "underscore": "~1.5.2"
-  }
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true
 }

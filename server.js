@@ -217,7 +217,7 @@ app.post('/my_projects', function(req, res) {
     );
 });
 
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000, process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "0.0.0.0");
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
