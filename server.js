@@ -13,8 +13,9 @@ var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
 
-var GITHUB_CLIENT_ID = "--insert-github-client-id-here--"
-var GITHUB_CLIENT_SECRET = "--insert-github-client-secret-here--";
+var credentials = require('./credentials');
+var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
+var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
 
 var github = new GitHubApi({
     // required
