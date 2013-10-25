@@ -16,6 +16,31 @@
         $scope.roster = [];
         $scope.name = '';
         $scope.text = '';
+        
+        $scope.my_projects = function my_projects() {
+            $.ajax({
+                url: "/my_projects",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({gistName: $scope.text}),
+                contentType: "application/json",
+                cache: false,
+                timeout: 5000,
+                complete: function() {
+                  //called when complete
+                  console.log('process complete');
+                },
+            
+                success: function(data) {
+                  console.log(data);
+                  console.log('process sucess');
+                },
+            
+                error: function() {
+                  console.log('process error');
+                },
+            }); 
+        }
 
         $scope.send = function send() {
           console.log('Sending message:', $scope.text);
@@ -84,8 +109,8 @@
       <div class="row">
         <div class="span3">
           <ul class="nav nav-list well">
-            <li class="nav-header">Local Users</li>
-            <li ng-repeat="user in roster" ng-bind="user">
+            <li class="nav-header"><a href="#" ng-click="my_projects()">My Projects</a></li>
+            <li ng-repeat="project in projects" ng-bind="project">
             </li>
           </ul>
         </div>

@@ -47,7 +47,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://makehub-c9-asimov4.c9.io/auth/github/callback",
+    callbackURL: "https://makehub2-c9-asimov4.c9.io/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -94,7 +94,8 @@ app.configure(function() {
 
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user });
+    
+    res.render('index', { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -146,6 +147,18 @@ app.post('/save', function(req, res) {
         res.contentType('json');
         res.send({ response: htmlUrl });
     });
+});
+
+app.post('/my_projects', function(req, res) {
+  github.gists.getFromUser(
+        {
+            user: req.user._json.login
+        },
+        function(err, res2) {
+            res.contentType('json');
+            res.send({ projects: res2 });
+        }
+    );
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");
