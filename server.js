@@ -19,6 +19,22 @@ var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 var credentials = require('./credentials');
 var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
 var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
+var HOST_NAME = 'https://makehub3-c9-devnook.c9.io';
+
+process.argv.forEach(function(val, index, array) {
+  if (val.split('=')[0] == '--github-client-id') {
+    GITHUB_CLIENT_ID = val.split('=')[1];
+  }
+  if (val.split('=')[0] == '--github-client-secret') {
+    GITHUB_CLIENT_SECRET = val.split('=')[1];
+  }
+  if (val.split('=')[0] == '--host') {
+    HOST_NAME = val.split('=')[1];
+  }
+});
+console.log('Running application with GITHUB_CLIENT_ID = ' + GITHUB_CLIENT_ID);
+console.log('Running application with GITHUB_CLIENT_SECRET = ' + GITHUB_CLIENT_SECRET);
+console.log('Running application on ' + HOST_NAME);
 
 var github = new GitHubApi({
     // required
@@ -26,7 +42,6 @@ var github = new GitHubApi({
     // optional
     timeout: 5000
 });
-
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -51,7 +66,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://makehub2-c9-asimov4.c9.io/auth/github/callback",
+    callbackURL: HOST_NAME + "/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -61,7 +76,7 @@ passport.use(new GitHubStrategy({
     });
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's GitHub profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the GitHub account with a user record in your database,
@@ -98,7 +113,7 @@ app.configure(function() {
 
 
 app.get('/', function(req, res){
-    
+
     res.render('index', { user: req.user });
 });
 
@@ -123,7 +138,7 @@ app.get('/auth/github',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/github/callback', 
+app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -136,10 +151,10 @@ app.get('/logout', function(req, res){
 
 app.post('/save', function(req, res) {
   console.log(req.body.gistName);
-  
+
   var file = {};
   file[req.body.newProject.title] = {"content": req.body.newProject.body};
-  
+
   github.gists.create(
     {
         description: MAKEHUB_PROJECT_FLAG,
@@ -154,10 +169,10 @@ app.post('/save', function(req, res) {
 
 app.post('/modify', function(req, res) {
   console.log(req.body.selectedProject);
-  
+
   var file = {};
   file[req.body.selectedProject.title] = {"content": req.body.rawProject};
-  
+
   github.gists.edit(
     {
         id: req.body.selectedProject.id,
@@ -170,7 +185,7 @@ app.post('/modify', function(req, res) {
 
 app.post('/display_project', function(req, res) {
     console.log(req.body.project.contentPath);
-  
+
     // get content
     var options = {
       accept: '*/*',
@@ -179,14 +194,14 @@ app.post('/display_project', function(req, res) {
       path: req.body.project.contentPath,
       method: 'GET'
     };
-    
+
     https.request(options, function(res2) {
         console.log('STATUS: ' + res.statusCode);
         console.log('HEADERS: ' + JSON.stringify(res2.headers));
         res2.setEncoding('utf8');
         res2.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            res.send({ 
+            res.send({
                 title: req.body.project.title,
                 id: req.body.project.id,
                 _raw: chunk,
