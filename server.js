@@ -153,33 +153,30 @@ app.post('/save', function(req, res) {
 });
 
 app.post('/modify', function(req, res) {
-  console.log(req.body.gistName);
+  console.log(req.body.selectedProject);
   
-  github.gists.create(
+  var file = {};
+  file[req.body.selectedProject.title] = {"content": req.body.rawProject};
+  
+  github.gists.edit(
     {
-        description: MAKEHUB_PROJECT_FLAG,
-        public: "true",
-        files: {
-            "myfile": {
-                "content": req.body.rawProject
-            }
-        }
+        id: req.body.selectedProject.id,
+        files: file
     },function(err, res2) {
-        var htmlUrl = res2.html_url;
         res.contentType('json');
-        res.send({ response: htmlUrl });
+        res.send({ response: res2 });
     });
 });
 
 app.post('/display_project', function(req, res) {
-    console.log(req.body.contentPath);
+    console.log(req.body.project.contentPath);
   
     // get content
     var options = {
       accept: '*/*',
       host: 'gist.github.com',
       port: 443,
-      path: req.body.contentPath,
+      path: req.body.project.contentPath,
       method: 'GET'
     };
     
@@ -189,8 +186,11 @@ app.post('/display_project', function(req, res) {
         res2.setEncoding('utf8');
         res2.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            res.send({ _raw: chunk,
-            _json: projectParser.parse(chunk)});
+            res.send({ 
+                title: req.body.project.title,
+                id: req.body.project.id,
+                _raw: chunk,
+                _json: projectParser.parse(chunk)});
         });
     }).end();
 });
@@ -206,8 +206,9 @@ app.post('/my_projects', function(req, res) {
             res2.forEach(function(gist,index) {
                if (gist.description == MAKEHUB_PROJECT_FLAG) {
                     var project = {};
-                    project.name = _.keys(gist.files)[0];
-                    project.contentPath = gist.files[project.name].raw_url.replace("https://gist.github.com","");
+                    project.title = _.keys(gist.files)[0];
+                    project.id = gist.id;
+                    project.contentPath = gist.files[project.title].raw_url.replace("https://gist.github.com","");
                     makeHubProjects.push(project);
                }
             });

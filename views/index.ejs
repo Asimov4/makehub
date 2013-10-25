@@ -14,7 +14,7 @@
       function ChatController($scope) {
         $scope.messages = [];
         $scope.projects = [];
-        $scope.selectedProject = [];
+        $scope.selectedProject = {};
         $scope.rawProject = '';
         $scope.newProject = {};
         $scope.newProject.title = '';
@@ -25,7 +25,7 @@
                 url: "/display_project",
                 type: "POST",
                 dataType: "json",
-                data: JSON.stringify({contentPath: project.contentPath}),
+                data: JSON.stringify({project: project}),
                 contentType: "application/json",
                 cache: false,
                 timeout: 5000,
@@ -37,8 +37,8 @@
                 success: function(data) {
                     $scope.$apply( function () {
                       console.log(data);
+                      $scope.selectedProject = data;
                       $scope.rawProject = data._raw;
-                      $scope.selectedProject = data._json;
                       console.log('process sucess');
                     });
                 },
@@ -54,7 +54,7 @@
                 url: "/my_projects",
                 type: "POST",
                 dataType: "json",
-                data: JSON.stringify({gistName: $scope.text}),
+                data: "{}",
                 contentType: "application/json",
                 cache: false,
                 timeout: 5000,
@@ -107,10 +107,12 @@
         $scope.modify = function modify() {
           console.log('Sending message:', $scope.rawProject);
           $.ajax({
-                url: "/save",
+                url: "/modify",
                 type: "POST",
                 dataType: "json",
-                data: JSON.stringify({rawProject: $scope.rawProject}),
+                data: JSON.stringify({
+                    rawProject: $scope.rawProject,
+                    selectedProject: $scope.selectedProject}),
                 contentType: "application/json",
                 cache: false,
                 timeout: 5000,
@@ -158,27 +160,29 @@
                 <a href="/logout">Log Out</a>
                 </p>
         <% } %>
-        <% if (!user) { %>
-                <h2>Welcome! Please log in.</h2>
-        <% } else { %>
-                <h2>Hello, <%= user.displayName %>.</h2>
-        <% } %>
       </div>
       <div class="row">
         <div class="span3">
+            <% if (!user) { %>
+                    <h2>Welcome! Please log in.</h2>
+            <% } else { %>
+                    <h2>Hello, <%= user.displayName %>.</h2>
+            <% } %>
           <ul class="nav nav-list well">
             <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
-            <li ng-repeat="project in projects" ng-bind="project.name" ng-click="display_project(project)">
+            <li ng-repeat="project in projects" ng-bind="project.title" ng-click="display_project(project)">
             </li>
           </ul>
         </div>
         <div class="span5">
+            <h2>{{selectedProject.title}}</h2>
             <ul class="nav nav-list well">
-                <li ng-repeat="line in selectedProject" ng-bind="line">
+                <li ng-repeat="line in selectedProject._json" ng-bind="line">
             </li>
           </ul>
         </div>
         <div class="span4">
+            <h2>Modify.</h2>
             <form ng-submit="modify()">
                 <textarea rows="10" ng-model="rawProject" placeholder="Your MakeHub Project"></textarea>
                 <input type="submit" class="span1 btn btn-primary" value="Modify">
