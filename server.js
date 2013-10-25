@@ -51,7 +51,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "https://makehub2-c9-asimov4.c9.io/auth/github/callback",
+    callbackURL: "http://localhost:3000/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {

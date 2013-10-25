@@ -1,4 +1,4 @@
 module.exports = {
-    GITHUB_CLIENT_ID: "--insert-github-client-id-here--",
-    GITHUB_CLIENT_SECRET: "--insert-github-client-secret-here--"
+    GITHUB_CLIENT_ID: "4675545a6c343a326a94",
+    GITHUB_CLIENT_SECRET: "b83650525b79e323af52f2f4f594928c1281c966"
 };
