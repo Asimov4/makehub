@@ -13,6 +13,8 @@ var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
 
+var projectParser = require('./project-parser');
+
 var credentials = require('./credentials');
 var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
 var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
@@ -168,9 +170,8 @@ app.post('/display_project', function(req, res) {
         res2.setEncoding('utf8');
         res2.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            var projectHTML = chunk.replace("\n","<br>");
-            // do some other nice parsing here
-            res.send({ content: projectHTML });
+            res.send({ _raw: chunk,
+            _json: projectParser.parse(chunk)});
         });
     }).end();
 });
