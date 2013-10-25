@@ -156,7 +156,12 @@ app.post('/my_projects', function(req, res) {
         },
         function(err, res2) {
             res.contentType('json');
-            res.send({ projects: res2 });
+            var makeHubProjects = [];
+            var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
+            res2.forEach(function(gist,index) {
+               if (gist.description == MAKEHUB_PROJECT_FLAG) makeHubProjects.push(gist);
+            });
+            res.send({ projects: makeHubProjects });
         }
     );
 });
