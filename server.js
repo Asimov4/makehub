@@ -14,6 +14,7 @@ var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
 
 var projectParser = require('./project-parser');
+var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 
 var credentials = require('./credentials');
 var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
@@ -138,11 +139,11 @@ app.post('/save', function(req, res) {
   
   github.gists.create(
     {
-        description: "Another bowl of pasta",
+        description: MAKEHUB_PROJECT_FLAG,
         public: "true",
         files: {
             "myfile": {
-                "content": req.body.gistName
+                "content": req.body.rawProject
             }
         }
     },function(err, res2) {
@@ -184,7 +185,6 @@ app.post('/my_projects', function(req, res) {
         function(err, res2) {
             res.contentType('json');
             var makeHubProjects = [];
-            var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
             res2.forEach(function(gist,index) {
                if (gist.description == MAKEHUB_PROJECT_FLAG) {
                     var project = {};
