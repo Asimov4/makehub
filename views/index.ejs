@@ -13,7 +13,7 @@
     <script>
       function ChatController($scope) {
         $scope.messages = [];
-        $scope.roster = [];
+        $scope.projects = [];
         $scope.name = '';
         $scope.text = '';
         
@@ -32,8 +32,11 @@
                 },
             
                 success: function(data) {
-                  console.log(data);
-                  console.log('process sucess');
+                    $scope.$apply( function () {
+                      console.log(data);
+                      $scope.projects = data.projects;
+                      console.log('process sucess');
+                    });
                 },
             
                 error: function() {
@@ -110,7 +113,7 @@
         <div class="span3">
           <ul class="nav nav-list well">
             <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
-            <li ng-repeat="project in projects" ng-bind="project">
+            <li ng-repeat="project in projects" ng-bind="project.name">
             </li>
           </ul>
         </div>

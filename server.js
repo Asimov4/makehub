@@ -9,6 +9,7 @@ var path = require('path');
 var async = require('async');
 var express = require('express');
 var util = require('util');
+var _ = require('underscore');
 var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
@@ -160,7 +161,12 @@ app.post('/my_projects', function(req, res) {
             var makeHubProjects = [];
             var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
             res2.forEach(function(gist,index) {
-               if (gist.description == MAKEHUB_PROJECT_FLAG) makeHubProjects.push(gist);
+               if (gist.description == MAKEHUB_PROJECT_FLAG) {
+                   var project = {};
+                   console.log(_.keys(gist.files));
+                   project.name = _.keys(gist.files)[0];
+                   makeHubProjects.push(project);
+               }
             });
             res.send({ projects: makeHubProjects });
         }

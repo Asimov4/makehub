@@ -12,6 +12,7 @@
     "ejs": "~0.8.4",
     "passport": ">= 0.0.0",
     "passport-github": ">= 0.0.0",
-    "ejs-locals": "~1.0.2"
+    "ejs-locals": "~1.0.2",
+    "underscore": "~1.5.2"
   }
 }
