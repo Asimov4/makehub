@@ -137,6 +137,24 @@ app.get('/logout', function(req, res){
 app.post('/save', function(req, res) {
   console.log(req.body.gistName);
   
+  var file = {};
+  file[req.body.newProject.title] = {"content": req.body.newProject.body};
+  
+  github.gists.create(
+    {
+        description: MAKEHUB_PROJECT_FLAG,
+        public: "true",
+        files: file
+    },function(err, res2) {
+        var htmlUrl = res2.html_url;
+        res.contentType('json');
+        res.send({ response: htmlUrl });
+    });
+});
+
+app.post('/modify', function(req, res) {
+  console.log(req.body.gistName);
+  
   github.gists.create(
     {
         description: MAKEHUB_PROJECT_FLAG,

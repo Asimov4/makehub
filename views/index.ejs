@@ -16,6 +16,9 @@
         $scope.projects = [];
         $scope.selectedProject = [];
         $scope.rawProject = '';
+        $scope.newProject = {};
+        $scope.newProject.title = '';
+        $scope.newProject.body = '';
         
         $scope.display_project = function display_project(project) {
             $.ajax({
@@ -75,6 +78,33 @@
         }
 
         $scope.save = function save() {
+          console.log('Sending message:', $scope.newProject);
+          $.ajax({
+                url: "/save",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({newProject: $scope.newProject}),
+                contentType: "application/json",
+                cache: false,
+                timeout: 5000,
+                complete: function() {
+                  //called when complete
+                  console.log('process complete');
+                },
+            
+                success: function(data) {
+                  console.log(data);
+                  console.log('process sucess');
+                },
+            
+                error: function() {
+                  console.log('process error');
+                },
+            });
+            $scope.text = '';
+        };
+
+        $scope.modify = function modify() {
           console.log('Sending message:', $scope.rawProject);
           $.ajax({
                 url: "/save",
@@ -99,10 +129,6 @@
                 },
             });
             $scope.text = '';
-        };
-
-        $scope.setName = function setName() {
-            console.log($scope.name);
         };
       }
     </script>
@@ -153,9 +179,19 @@
           </ul>
         </div>
         <div class="span4">
-            <form ng-submit="save()">
+            <form ng-submit="modify()">
                 <textarea rows="10" ng-model="rawProject" placeholder="Your MakeHub Project"></textarea>
-                <input type="submit" class="span1 btn btn-primary" value="Save">
+                <input type="submit" class="span1 btn btn-primary" value="Modify">
+            </form>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Create a new project</h3>
+        <div class="span12">
+            <form ng-submit="save()">
+                <input type="text" ng-model="newProject.title" placeholder="Your New MakeHub Project Title"></textarea>
+                <textarea rows="10" ng-model="newProject.body" placeholder="Your New MakeHub ProjectBody"></textarea>
+                <input type="submit" class="span1 btn btn-primary" value="Create">
             </form>
         </div>
       </div>
