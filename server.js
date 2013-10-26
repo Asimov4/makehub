@@ -9,6 +9,9 @@ var async = require('async');
 var express = require('express');
 var util = require('util');
 var _ = require('underscore');
+var pagedown = require("pagedown");
+var converter = pagedown.getSanitizingConverter(); 
+
 var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
@@ -38,6 +41,7 @@ var github = new GitHubApi({
     // optional
     timeout: 5000
 });
+    
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -197,11 +201,13 @@ app.post('/display_project', function(req, res) {
         res2.setEncoding('utf8');
         res2.on('data', function (chunk) {
             console.log('BODY: ' + chunk);
-            res.send({ 
+            var project = { 
                 title: req.body.project.title,
                 id: req.body.project.id,
                 _raw: chunk,
-                _json: projectParser.parse(chunk)});
+                _json: projectParser.parse(chunk),
+                _html: converter.makeHtml(chunk)};
+            res.send(project);
         });
     }).end();
 });

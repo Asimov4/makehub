@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
   <head>
     <title>MakeHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,7 +131,10 @@
                 },
             });
             $scope.text = '';
+            
+            
         };
+        
       }
     </script>
   </head>
@@ -176,13 +179,21 @@
         </div>
         <div class="span5">
             <h2>{{selectedProject.title}}</h2>
-            <ul class="nav nav-list well">
-                <li ng-repeat="line in selectedProject._json" ng-bind="line">
-            </li>
-          </ul>
+            
+            <p ng-bind-html="selectedProject._html" class="well"></p>
+            
+            
         </div>
         <div class="span4">
-            <h2>Modify.</h2>
+            <h2>Modify</h2>
+            <div>
+            <p>You can use markdow in your project description:</p> 
+            <p>**bold text**</p>
+            <p># Header H1</p>
+            <p>## Header H2</p>
+            <p>* Bullet list item 1<br/>* Buller list item 2</p>
+            <p>1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+            </div>
             <form ng-submit="modify()">
                 <textarea rows="10" ng-model="rawProject" placeholder="Your MakeHub Project"></textarea>
                 <input type="submit" class="span1 btn btn-primary" value="Modify">
@@ -203,5 +214,10 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/angular.min.js"></script>
+    <!-- Minified sanitize didn't work for some reason - bug? -->
+    <script src="/js/angular-sanitize.js"></script>
+    <script>
+        var app = angular.module('myApp', ['ngSanitize']);
+    </script>
   </body>
 </html>
