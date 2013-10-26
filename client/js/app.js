@@ -1,0 +1,1 @@
+angular.module('makeHub', ['makeHub.controllers', 'ngSanitize']);
