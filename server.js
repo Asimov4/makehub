@@ -19,9 +19,8 @@ var GitHubStrategy = require('passport-github').Strategy;
 var projectParser = require('./project-parser');
 var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 
-var credentials = require('./credentials');
-var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
-var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
+var GITHUB_CLIENT_ID;
+var GITHUB_CLIENT_SECRET;
 var HOST_NAME = 'https://makehub3-c9-devnook.c9.io';
 
 process.argv.forEach(function(val, index, array) {
