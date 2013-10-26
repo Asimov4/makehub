@@ -124,4 +124,15 @@ angular.module('makeHub.controllers', ['flash']).
             });
             $scope.text = '';
         };
-  }]);
+  }])
+  .controller('ProjectCtrl', ['$scope', 'flash', '$routeParams', '$http',
+  function($scope, flash, $routeParams, $http) {
+        $scope.projectId = $routeParams.projectId;
+        var projectUrl = ['project', $routeParams.projectUser, $routeParams.projectId].join('/');
+        $http.get(projectUrl).success(function(data) {
+          console.log(data);
+          $scope.project = data;
+        });
+    
+  }
+]);

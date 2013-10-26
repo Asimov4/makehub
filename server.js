@@ -120,6 +120,34 @@ app.post('/modify', function(req, res) {
     });
 });
 
+app.get('/project/:userId/:projectId', function(req, res) {
+    console.log(req.params.userId);
+
+    // get content
+    var options = {
+      accept: '*/*',
+      host: 'gist.github.com',
+      port: 443,
+      path: [req.params.userId, req.params.projectId, 'raw'].join('/'),
+      method: 'GET'
+    };
+
+    https.request(options, function(res2) {
+        console.log('STATUS: ' + res2.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res2.headers));
+        res2.setEncoding('utf8');
+        res2.on('data', function (chunk) {
+            if (res2.statusCode !== 200) {
+                res.send({'error': 'Project not found.'})
+            } else {
+                res.send({
+                  'test': 'test2'
+                });
+            }
+        });
+    }).end();
+});
+
 app.post('/display_project', function(req, res) {
     console.log(req.body.project.contentPath);
 
