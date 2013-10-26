@@ -92,7 +92,7 @@ app.post('/save', function(req, res) {
   var file = {};
   file[req.body.newProject.title] = {"content": req.body.newProject.body};
 
-  github.connexion.gists.create(
+  github.conn.gists.create(
     {
         description: MAKEHUB_PROJECT_FLAG,
         public: "true",
@@ -110,7 +110,7 @@ app.post('/modify', function(req, res) {
   var file = {};
   file[req.body.selectedProject.title] = {"content": req.body.rawProject};
 
-  github.connexion.gists.edit(
+  github.conn.gists.edit(
     {
         id: req.body.selectedProject.id,
         files: file
@@ -149,7 +149,7 @@ app.post('/display_project', function(req, res) {
 });
 
 app.post('/my_projects', function(req, res) {
-  github.connexion.gists.getFromUser(
+  github.conn.gists.getFromUser(
         {
             user: req.user._json.login
         },
