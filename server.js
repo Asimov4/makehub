@@ -11,8 +11,6 @@ var async = require('async');
 var express = require('express');
 var util = require('util');
 var _ = require('underscore');
-var passport = require('passport')
-var GitHubStrategy = require('passport-github').Strategy;
 
 // MakeHub imports
 var github = require('./authentication');
@@ -23,51 +21,6 @@ console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIEN
 console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
 console.log('Running application on ' + github.HOSTNAME);
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete GitHub profile is serialized
-//   and deserialized.
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-
-// Use the GitHubStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and GitHub
-//   profile), and invoke a callback with a user object.
-passport.use(new GitHubStrategy({
-    clientID: github.GITHUB_CLIENT_ID,
-    clientSecret: github.GITHUB_CLIENT_SECRET,
-    callbackURL: github.HOSTNAME + "/auth/github/callback",
-    scope: "gist"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    github.authenticate({
-        type: "oauth",
-        token: accessToken
-    });
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-
-      // To keep the example simple, the user's GitHub profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the GitHub account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }
-));
-
-//
-// ## SimpleServer `SimpleServer(obj)`
 //
 // Creates a new instance of SimpleServer with the following options:
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
@@ -83,10 +36,12 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.session({ secret: 'keyboard cat' }));
+
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(github.passport.initialize());
+  app.use(github.passport.session());
+
   app.use(app.router);
   app.use(express.static(__dirname + '/client'));
 });
@@ -107,7 +62,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 //   the user to github.com.  After authorization, GitHubwill redirect the user
 //   back to this application at /auth/github/callback
 app.get('/auth/github',
-  passport.authenticate('github'),
+  github.passport.authenticate('github'),
   function(req, res){
     // The request will be redirected to GitHub for authentication, so this
     // function will not be called.
@@ -119,7 +74,7 @@ app.get('/auth/github',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  github.passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
