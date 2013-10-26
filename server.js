@@ -19,7 +19,7 @@ var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 var pagedown = require("pagedown");
 var converter = pagedown.getSanitizingConverter(); 
 
-onsole.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
+console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
 console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
 console.log('Running application on ' + github.HOSTNAME);
 
