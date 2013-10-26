@@ -6,13 +6,12 @@
 var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
-var credentials = require('../credentials');
 
 
 // Exported variables
-var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID || process.env.GITHUB_CLIENT_ID;
-var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET || process.env.GITHUB_CLIENT_SECRET;
-var HOSTNAME = 'https://makehub3-c9-devnook.c9.io' || process.env.MAKEHUB_HOSTNAME;
+var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+var HOSTNAME = process.env.MAKEHUB_HOSTNAME;
 
 
 // Update github api connexion parameters
