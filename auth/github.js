@@ -6,7 +6,7 @@
 var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
-var credentials = require('./credentials');
+var credentials = require('../credentials');
 
 
 // Exported variables

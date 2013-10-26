@@ -13,7 +13,7 @@ var util = require('util');
 var _ = require('underscore');
 
 // MakeHub imports
-var github = require('./authentication');
+var github = require('./auth/github');
 var projectParser = require('./project-parser');
 var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 
