@@ -1,5 +1,5 @@
-angular.module('makeHub.controllers', []).
-  controller('ChatController', ['$scope', function($scope) {
+angular.module('makeHub.controllers', ['flash']).
+  controller('ChatController', ['$scope', 'flash', function($scope, flash) {
         $scope.messages = [];
         $scope.projects = [];
         $scope.selectedProject = {};
@@ -7,6 +7,8 @@ angular.module('makeHub.controllers', []).
         $scope.newProject = {};
         $scope.newProject.title = '';
         $scope.newProject.body = '';
+        
+        
         
         $scope.display_project = function display_project(project) {
             $.ajax({
@@ -33,6 +35,7 @@ angular.module('makeHub.controllers', []).
             
                 error: function() {
                   console.log('process error');
+                  flash('error', 'Something went wrong with your request. Are you logged in?');
                 },
             }); 
         }
@@ -61,6 +64,7 @@ angular.module('makeHub.controllers', []).
             
                 error: function() {
                   console.log('process error');
+                  flash('error', 'Something went wrong with your request. Are you logged in?');
                 },
             }); 
         }

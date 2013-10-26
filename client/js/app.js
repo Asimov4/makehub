@@ -1,1 +1,1 @@
-angular.module('makeHub', ['makeHub.controllers', 'ngSanitize']);
+angular.module('makeHub', ['makeHub.controllers', 'ngSanitize', 'flash']);
