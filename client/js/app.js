@@ -1,15 +1,19 @@
 var myApp = angular.module('makeHub', [
-    'makeHub.controllers', 
+    'makeHub.controllers',
     'ngSanitize',
     'ngRoute',
     'flash']);
-    
+
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/project/:projectUser/:projectId', {
+      when('/project/:projectId', {
         templateUrl: 'partials/project.html',
         controller: 'ProjectCtrl'
+      })
+      .when('/create', {
+        templateUrl: 'partials/create.html',
+        controller: 'CreateCtrl'
       }).
       otherwise({
         redirectTo: '/'

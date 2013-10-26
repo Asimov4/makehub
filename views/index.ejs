@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
-    <style>
-      body {
-        padding-top: 60px;
-      }
-    </style>
   </head>
   <body>
     <div class="container" ng-controller="ChatController">
@@ -23,17 +18,17 @@
       <div class="page-header">
         <h1>MakeHub</h1>
       </div>
-      <flash-messages></flash-messages>  
+      <flash-messages></flash-messages>
       <div class="row">
         <% if (!user) { %>
                 <p>
-                <a href="/">Home</a> | 
+                <a href="/">Home</a> |
                 <a href="/auth/github">Log In</a>
                 </p>
         <% } else { %>
                 <p>
-                <a href="/">Home</a> | 
-                <a href="/account">Account</a> | 
+                <a href="/">Home</a> |
+                <a href="/account">Account</a> |
                 <a href="/logout">Log Out</a>
                 </p>
         <% } %>
@@ -47,47 +42,13 @@
             <% } %>
           <ul class="nav nav-list well">
             <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
-            <li ng-repeat="project in projects" ng-bind="project.title" ng-click="display_project(project)">
+            <li ng-repeat="project in projects">
+            <a href="/#/project/{{project.id}}">{{project.description}}</a>
             </li>
           </ul>
         </div>
         <div class="span5">
-            <h2>{{selectedProject.title}}</h2>
-            <p ng-bind-html="selectedProject._html" class="well"></p>
-        </div>
-        <div class="span4">
-            <h2>Modify</h2>
-            <div>
-            <p>You can use markdow in your project description:</p> 
-            <p>**bold text**</p>
-            <p># Header H1</p>
-            <p>## Header H2</p>
-            <p>* Bullet list item 1<br/>* Buller list item 2</p>
-            <p>1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
-            </div>
-            <form ng-submit="modify()">
-                <textarea rows="10" ng-model="rawProject" placeholder="Your MakeHub Project"></textarea>
-                <input type="submit" class="span1 btn btn-primary" value="Modify">
-            </form>
-        </div>
-      </div>
-      <div class="row">
-        <h3>Create a new project</h3>
-        <div class="span12">
-            <form ng-submit="save()">
-                <input type="text" ng-model="newProject.title" placeholder="Your New MakeHub Project Title"></textarea>
-                <textarea rows="10" ng-model="newProject.body" placeholder="Your New MakeHub ProjectBody"></textarea>
-                <input type="submit" class="span1 btn btn-primary" value="Create">
-            </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <h3>Search</h3>
-          
-           View:
-           <div ng-view></div>
-            
+            <div ng-view></div>
         </div>
       </div>
     </div>
