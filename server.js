@@ -21,7 +21,7 @@ var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 
 console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
 console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
-console.log('Running application on ' + github.HOST_NAME);
+console.log('Running application on ' + github.HOSTNAME);
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -46,7 +46,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GitHubStrategy({
     clientID: github.GITHUB_CLIENT_ID,
     clientSecret: github.GITHUB_CLIENT_SECRET,
-    callbackURL: github.HOST_NAME + "/auth/github/callback",
+    callbackURL: github.HOSTNAME + "/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
