@@ -23,6 +23,7 @@
       <div class="page-header">
         <h1>MakeHub</h1>
       </div>
+      <flash-messages></flash-messages>  
       <div class="row">
         <% if (!user) { %>
                 <p>
@@ -86,6 +87,7 @@
     <script src="/js/libs/angular.min.js"></script>
     <!-- Minified sanitize didn't work for some reason - bug? -->
     <script src="/js/libs/angular-sanitize.js"></script>
+    <script src="/js/libs/angular-flash.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers.js"></script>
   </body>
