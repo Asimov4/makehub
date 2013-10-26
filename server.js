@@ -1,47 +1,27 @@
-//
 // # MakeHub server
 //
+
+// Core imports
 var http = require('http');
 var https = require('https');
 var path = require('path');
 
+// Third party modules import
 var async = require('async');
 var express = require('express');
 var util = require('util');
 var _ = require('underscore');
-var GitHubApi = require('github');
 var passport = require('passport')
 var GitHubStrategy = require('passport-github').Strategy;
 
+// MakeHub imports
+var github = require('./authentication');
 var projectParser = require('./project-parser');
 var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 
-var credentials = require('./credentials');
-var GITHUB_CLIENT_ID = credentials.GITHUB_CLIENT_ID;
-var GITHUB_CLIENT_SECRET = credentials.GITHUB_CLIENT_SECRET;
-var HOST_NAME = 'https://makehub3-c9-devnook.c9.io';
-
-process.argv.forEach(function(val, index, array) {
-  if (val.split('=')[0] == '--github-client-id') {
-    GITHUB_CLIENT_ID = val.split('=')[1];
-  }
-  if (val.split('=')[0] == '--github-client-secret') {
-    GITHUB_CLIENT_SECRET = val.split('=')[1];
-  }
-  if (val.split('=')[0] == '--host') {
-    HOST_NAME = val.split('=')[1];
-  }
-});
-console.log('Running application with GITHUB_CLIENT_ID = ' + GITHUB_CLIENT_ID);
-console.log('Running application with GITHUB_CLIENT_SECRET = ' + GITHUB_CLIENT_SECRET);
-console.log('Running application on ' + HOST_NAME);
-
-var github = new GitHubApi({
-    // required
-    version: "3.0.0",
-    // optional
-    timeout: 5000
-});
+console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
+console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
+console.log('Running application on ' + github.HOST_NAME);
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -64,9 +44,9 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an accessToken, refreshToken, and GitHub
 //   profile), and invoke a callback with a user object.
 passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: HOST_NAME + "/auth/github/callback",
+    clientID: github.GITHUB_CLIENT_ID,
+    clientSecret: github.GITHUB_CLIENT_SECRET,
+    callbackURL: github.HOST_NAME + "/auth/github/callback",
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -155,7 +135,7 @@ app.post('/save', function(req, res) {
   var file = {};
   file[req.body.newProject.title] = {"content": req.body.newProject.body};
 
-  github.gists.create(
+  github.connexion.gists.create(
     {
         description: MAKEHUB_PROJECT_FLAG,
         public: "true",
@@ -173,7 +153,7 @@ app.post('/modify', function(req, res) {
   var file = {};
   file[req.body.selectedProject.title] = {"content": req.body.rawProject};
 
-  github.gists.edit(
+  github.connexion.gists.edit(
     {
         id: req.body.selectedProject.id,
         files: file
@@ -211,7 +191,7 @@ app.post('/display_project', function(req, res) {
 });
 
 app.post('/my_projects', function(req, res) {
-  github.gists.getFromUser(
+  github.connexion.gists.getFromUser(
         {
             user: req.user._json.login
         },
