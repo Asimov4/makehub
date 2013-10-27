@@ -1,21 +1,19 @@
-<div ng-show="project">
-  <p>Project: <a href="/#/project/{{project.user}}/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
-  <h1>{{project.description}}</h1>
-  <p ng-bind-html="project.content" class="well"></p>
+<div ng-show="project" class="col-md-7">
+    <p>Project: <a href="/#/project/{{project.user}}/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
+    <h1>{{project.description}}</h1>
+    <p ng-bind-html="project.content" class="well"></p>
+    
+    <h2>Modify</h2>
+    <p>You can use markdow in your project description:</p>
+    <p>**bold text**</p>
+    <p># Header H1</p>
+    <p>## Header H2</p>
+    <p>* Bullet list item 1<br/>* Buller list item 2</p>
+    <p>1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+    <form ng-submit="modify()">
+        <textarea rows="10"
+            placeholder="Your MakeHub Project"
+            ng-model="project.raw"></textarea>
+        <input type="submit" class="btn btn-primary" value="Modify">
+    </form>
 </div>
-
-<h2>Modify</h2>
-<div>
-  <p>You can use markdow in your project description:</p>
-  <p>**bold text**</p>
-  <p># Header H1</p>
-  <p>## Header H2</p>
-  <p>* Bullet list item 1<br/>* Buller list item 2</p>
-  <p>1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
-</div>
-<form ng-submit="modify()">
-    <textarea rows="10"
-        placeholder="Your MakeHub Project"
-        ng-model="project.raw"></textarea>
-    <input type="submit" class="btn btn-primary" value="Modify">
-</form>
