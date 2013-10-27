@@ -17,7 +17,7 @@ var github = require('./auth/github');
 var projectParser = require('./project-parser');
 var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
 var pagedown = require("pagedown");
-var converter = pagedown.getSanitizingConverter(); 
+var converter = pagedown.getSanitizingConverter();
 
 console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
 console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
@@ -86,66 +86,73 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.post('/save', function(req, res) {
-  console.log(req.body.gistName);
-
-  var file = {};
-  file[req.body.newProject.title] = {"content": req.body.newProject.body};
-
+app.post('/create', function(req, res) {
+  if (!req.isAuthenticated()) {
+    res.send({'error': 'Login required'});
+    return;
+  }
   github.conn.gists.create(
     {
-        description: MAKEHUB_PROJECT_FLAG,
+        description: req.body.description,
         public: "true",
-        files: file
-    },function(err, res2) {
-        var htmlUrl = res2.html_url;
-        res.contentType('json');
-        res.send({ response: htmlUrl });
+        files: {'makehub': {"content": req.body.content}}
+    }, function(err, gist) {
+      if (err) {
+        res.send({'error': JSON.parse(err.message).message})
+      } else if (!gist.files['makehub']) {
+        res.send({'error': 'This is not a makehub project.'})
+      } else {
+        var project = projectParser.parse(gist);
+        res.send(project);
+      }
     });
 });
 
-app.post('/modify', function(req, res) {
-  console.log(req.body.selectedProject);
-
-  var file = {};
-  file[req.body.selectedProject.title] = {"content": req.body.rawProject};
-
+app.post('/project/:projectId', function(req, res) {
+  if (!req.isAuthenticated()) {
+    res.send({'error': 'Login required'});
+    return;
+  }
+  var options = {
+    id: req.params.projectId,
+    description: req.body.description,
+    files: {'makehub': {"content": req.body.raw}}
+  };
   github.conn.gists.edit(
-    {
-        id: req.body.selectedProject.id,
-        files: file
-    },function(err, res2) {
-        res.contentType('json');
-        res.send({ response: res2 });
+    options, function(err, gist) {
+      if (err) {
+        res.send({'error': JSON.parse(err.message).message})
+      } else if (!gist.files['makehub']) {
+        res.send({'error': 'This is not a makehub project.'})
+      } else {
+        var project = projectParser.parse(gist);
+        res.send(project);
+      }
     });
+
 });
 
-app.post('/display_project', function(req, res) {
-    console.log(req.body.project.contentPath);
+app.get('/project/:projectId', function(req, res) {
+    console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
 
-    // get content
-    var options = {
-      accept: '*/*',
-      host: 'gist.github.com',
-      port: 443,
-      path: req.body.project.contentPath,
-      method: 'GET'
-    };
-
-    https.request(options, function(res2) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res2.headers));
-        res2.setEncoding('utf8');
-        res2.on('data', function (chunk) {
-            console.log('BODY: ' + chunk);
-            res.send({
-                title: req.body.project.title,
-                id: req.body.project.id,
-                _raw: chunk,
-                _json: projectParser.parse(chunk),
-                _html: converter.makeHtml(chunk)});
-        });
-    }).end();
+    // https://api.github.com/gists/4224228
+    github.conn.gists.get(
+        {
+            id: req.params.projectId
+        },
+        function(err, gist) {
+          console.log(err)
+          console.log(gist)
+          if (err) {
+            res.send({'error': JSON.parse(err.message).message})
+          } else if (!gist.files['makehub']) {
+            res.send({'error': 'This is not a makehub project.'})
+          } else {
+            var project = projectParser.parse(gist);
+            res.send(project);
+          }
+        }
+    );
 });
 
 app.post('/my_projects', function(req, res) {
@@ -156,12 +163,10 @@ app.post('/my_projects', function(req, res) {
         function(err, res2) {
             res.contentType('json');
             var makeHubProjects = [];
-            res2.forEach(function(gist,index) {
-               if (gist.description == MAKEHUB_PROJECT_FLAG) {
-                    var project = {};
-                    project.title = _.keys(gist.files)[0];
-                    project.id = gist.id;
-                    project.contentPath = gist.files[project.title].raw_url.replace("https://gist.github.com","");
+            res2.forEach(function(gist, index) {
+               if (gist.files['makehub']) {
+                    console.log(gist)
+                    var project = projectParser.parse(gist);
                     makeHubProjects.push(project);
                }
             });
