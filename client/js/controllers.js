@@ -101,9 +101,12 @@ angular.module('makeHub.controllers', ['flash']).
   }])
   .controller('SearchCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
-    $scope.search = function() {
-
-
+    var loadScript = function() {
+      var cx = '002434031809215344527:933xnku0cqq'; // Insert your own Custom Search engine ID here
+      var gcse = document.createElement('script'); gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = '//www.google.com/cse/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
     };
-
+    loadScript();
   }]);
