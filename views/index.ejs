@@ -14,6 +14,11 @@
             <nav class="navbar-header" role="navigation">
                 <a class="navbar-brand" href="#">MakeHub</a>
             </nav>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="/#/search">Search projects</a></li>
+                <li><a href="/#/create">Create new Project</a></li>
+            </ul>
             <nav class="pull-right">
                 <% if (!user) { %>
                         Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
@@ -36,7 +41,6 @@
             <a href="/#/project/{{project.id}}">{{project.description}}</a>
             </li>
           </ul>
-          <a href="/#/create">Create new</a>
         </div>
         <div class="span5">
             <div ng-view></div>
