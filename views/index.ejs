@@ -9,43 +9,44 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
   </head>
   <body>
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div ng-controller="ChatController">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <nav class="navbar-header" role="navigation">
+                    <a class="navbar-brand" href="#">MakeHub</a>
+                </nav>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-click="my_projects()">My Projects <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="project in projects">
+                            <a href="/#/project/{{project.id}}">{{project.description}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/#/search">Search projects</a></li>
+                    <li><a href="/#/create">Create new Project</a></li>
+                </ul>
+                <nav class="pull-right">
+                    <% if (!user) { %>
+                            Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
+                    <% } else { %>
+                            Hello, <a href="/account"><%= user.displayName %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
+                    <% } %>
+                </nav>
+            </div>
+        </div>
         <div class="container">
-            <nav class="navbar-header" role="navigation">
-                <a class="navbar-brand" href="#">MakeHub</a>
-            </nav>
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="/#/search">Search projects</a></li>
-                <li><a href="/#/create">Create new Project</a></li>
-            </ul>
-            <nav class="pull-right">
-                <% if (!user) { %>
-                        Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
-                <% } else { %>
-                        Hello, <a href="/account"><%= user.displayName %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
-                <% } %>
-            </nav>
+    
+          <flash-messages></flash-messages>
+    
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div ng-view></div>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="container" ng-controller="ChatController">
-
-      <flash-messages></flash-messages>
-
-      <div class="row">
-        <div class="col-md-3">
-
-          <ul class="nav nav-list well">
-            <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
-            <li ng-repeat="project in projects">
-            <a href="/#/project/{{project.id}}">{{project.description}}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-8">
-            <div ng-view></div>
-        </div>
-      </div>
     </div>
     <script src="/js/libs/jquery.min.js"></script>
     <script src="/js/libs/bootstrap.min.js"></script>
