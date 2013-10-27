@@ -15,6 +15,10 @@ myApp.config(['$routeProvider',
         templateUrl: 'partials/create.html',
         controller: 'CreateCtrl'
       }).
+      when('/search', {
+        templateUrl: 'partials/search.html',
+        controller: 'SearchCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

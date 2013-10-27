@@ -98,4 +98,12 @@ angular.module('makeHub.controllers', ['flash']).
 
     };
 
+  }])
+  .controller('SearchCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
+  function($scope, flash, $routeParams, $http, $route) {
+    $scope.search = function() {
+
+
+    };
+
   }]);
