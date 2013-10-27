@@ -32,7 +32,7 @@ angular.module('makeHub.controllers', ['flash']).
 
                 error: function() {
                   console.log('process error');
-                  flash('error', 'Something went wrong with your request. Are you logged in?');
+                  flash('danger', 'Something went wrong with your request. Are you logged in?');
                 },
             });
         }
@@ -45,7 +45,7 @@ angular.module('makeHub.controllers', ['flash']).
         $http.get(projectUrl).success(function(data) {
           console.log(data)
           if (data.error) {
-            flash('error', data.error);
+            flash('danger', data.error);
           } else {
             $scope.project = data;
           }
