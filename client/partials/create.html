@@ -1,6 +1,18 @@
-<h3>Create a new project</h3>
-<form ng-submit="create()">
-  <input type="text" ng-model="description" placeholder="Description">
-  <textarea rows="10" ng-model="content" placeholder="Your New MakeHub ProjectBody"></textarea>
-    <input type="submit" class="stn btn-primary" value="Create">
+<h3>Create new project</h3>
+<form role="form" ng-submit="create()">
+  <div class="form-group">
+    <label for="description">Project description</label>
+    <input class="form-control" type="text" ng-model="description" id="description" placeholder="Description">
+  </div>
+  <div class="form-group">
+    <label for="projectBody">Project Body</label>
+    <textarea class="form-control" rows="10" ng-model="content" id="projectBody" placeholder="Your New MakeHub ProjectBody"></textarea>
+    <p class="help-block">You can use markdow in your project description:</p>
+    <p class="help-block">**bold text**</p>
+    <p class="help-block"># Header H1</p>
+    <p class="help-block">## Header H2</p>
+    <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
+    <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
 </form>
