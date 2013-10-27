@@ -9,33 +9,27 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
   </head>
   <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <nav class="navbar-header" role="navigation">
+                <a class="navbar-brand" href="#">MakeHub</a>
+            </nav>
+            <nav class="pull-right">
+                <% if (!user) { %>
+                        Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
+                <% } else { %>
+                        Hello, <a href="/account"><%= user.displayName %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
+                <% } %>
+            </nav>
+        </div>
+    </div>
     <div class="container" ng-controller="ChatController">
 
-      <div class="page-header">
-        <h1>MakeHub</h1>
-      </div>
       <flash-messages></flash-messages>
-      <div class="row">
-        <% if (!user) { %>
-                <p>
-                <a href="/">Home</a> |
-                <a href="/auth/github">Log In</a>
-                </p>
-        <% } else { %>
-                <p>
-                <a href="/">Home</a> |
-                <a href="/account">Account</a> |
-                <a href="/logout">Log Out</a>
-                </p>
-        <% } %>
-      </div>
+
       <div class="row">
         <div class="span3">
-            <% if (!user) { %>
-                    <h2>Welcome! Please log in.</h2>
-            <% } else { %>
-                    <h2>Hello, <%= user.displayName %>.</h2>
-            <% } %>
+
           <ul class="nav nav-list well">
             <li class="nav-header"><a href="#" ng-click="my_projects()">List my Projects</a></li>
             <li ng-repeat="project in projects">
