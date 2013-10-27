@@ -1,0 +1,60 @@
+<style>
+.gs-web-image-box, .gs-promotion-image-box {
+    margin-right: 6px;
+    width: 72px;
+}
+</style>
+
+<h3>Search</h3>
+<p>Example: test, test4, desc</p>
+<gcse:search webSearchQueryAddition='more:pagemap:metatags-og_title:makehub' addOverride="makehub_"></gcse:search>
+
+<!-- This snippet overrides Google's default result rendering. -->
+<div style="display:none">
+  <div id="makehub_webResult">
+    <div class="gs-webResult gs-result"
+      data-vars="{longUrl:function() {
+        var i = unescapedUrl.indexOf(visibleUrl);
+        return i < 1 ? visibleUrl : unescapedUrl.substring(i);},
+        makehubUrl: function(url) {
+          return '/#/project/' + richSnippet.metatags.octolyticsDimensionGistId;
+        },
+        formatTitle: function(description) {
+          return description.replace('- Gist is a simple way to share snippets of text and code with others.', '');
+        }}">
+      <div data-attr="0"
+        data-body="render('thumbnail',richSnippet,{url:unescapedUrl,target:target})"></div>
+    
+      <div class="gs-title">
+        <a class="gs-title" 
+           data-attr="{href:makehubUrl()}"
+           data-if="Vars.richSnippet.metatags.ogDescription" 
+           data-body="formatTitle(richSnippet.metatags.ogDescription)"></a>
+        <a class="gs-title" 
+           data-elif="true"
+           data-attr="{href:makehubUrl()}"
+           data-body="html(title)"></a>
+      </div>
+      <div class="gs-snippet" data-body="html(content)"></div>
+      <div data-body="JSON.stringify(richSnippet)" data-if="false"></div>
+      <div>
+      <span class="gs-visibleUrl" data-body="'project/' + richSnippet.metatags.octolyticsDimensionGistId"></span>
+      by
+      <strong><span data-body="richSnippet.metatags.octolyticsDimensionOwnerLogin"></span></strong>
+      </div>
+    </div>
+  </div>
+  
+  <div id="makehub_thumbnail">
+    <div data-attr="0" data-vars="{tn:Vars.thumbnail && thumbnail.src
+        ? thumbnail : {src:Vars.document && document.thumbnailUrl}}">
+        
+      <div class="gs-image-box gs-web-image-box">
+        <a class="gs-image" data-attr="{href:url,target:target}">
+          <img class="gs-image" src=""
+            data-attr="{src:cseImage.src}"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
