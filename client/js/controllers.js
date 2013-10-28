@@ -50,6 +50,26 @@ angular.module('makeHub.controllers', ['flash']).
             $scope.project = data;
           }
         });
+        
+        $scope.fork = function () {
+          var projectUrl = ['project', 'fork', $scope.project.id].join('/');
+          $.ajax({
+              url: projectUrl,
+              type: "POST",
+              data: $scope.project,
+              success: function(data) {
+                if (data.error) {
+                  flash(data.error);
+                } else {
+                  flash('Forked');
+                  window.location = '#/project/' + data.id;
+                }
+              },
+              error: function() {
+                console.log('process error');
+              },
+          });
+        };
 
         $scope.modify = function () {
           var projectUrl = ['project', $scope.project.id].join('/');

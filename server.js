@@ -129,7 +129,6 @@ app.post('/project/:projectId', function(req, res) {
         res.send(project);
       }
     });
-
 });
 
 app.get('/project/:projectId', function(req, res) {
@@ -151,6 +150,24 @@ app.get('/project/:projectId', function(req, res) {
             var project = projectParser.parse(gist);
             project.ownedByMe = currentlyLoggedInUser == gist.user.login;
             res.send(project);
+          }
+        }
+    );
+});
+
+app.post('/project/fork/:projectId', function(req, res) {
+    console.log("FORKING project " + req.params.projectId);
+    github.conn.gists.fork(
+        {
+            id: req.params.projectId
+        },
+        function(err, gist) {
+          console.log(err)
+          console.log(gist)
+          if (err) {
+            res.send({'error': JSON.parse(err.message).message})
+          } else {
+            res.send({id: gist.id});
           }
         }
     );

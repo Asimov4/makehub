@@ -3,21 +3,23 @@
     <h1>{{project.description}}</h1>
     <p ng-bind-html="project.content" class="well"></p>
     
-    <h3>Modify project</h3>
-    <form role="form" ng-submit="modify()">
-      <div class="form-group">
-        <label for="projectBody">Project Body</label>
-        <textarea class="form-control" rows="10" ng-model="project.raw" id="projectBody" placeholder="Your MakeHub Project"></textarea>
-        <p class="help-block">You can use markdow in your project description:</p>
-        <p class="help-block">**bold text**</p>
-        <p class="help-block"># Header H1</p>
-        <p class="help-block">## Header H2</p>
-        <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
-        <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
-      </div>
-      <div ng-switch on="project.ownedByMe">
-          <div ng-switch-when="false"><button type="submit" class="btn btn-primary">Fork</button></div>
-          <div ng-switch-default><button type="submit" class="btn btn-primary">Modify</button></div>
-      </div>
-    </form>
+    <div ng-switch on="project.ownedByMe">
+        <div ng-switch-when="false"><button class="btn btn-primary" ng-click="fork()">Fork this project</button></div>
+        <div ng-switch-default>
+            <h3>Modify project</h3>
+            <form role="form" ng-submit="modify()">
+                <div class="form-group">
+                    <label for="projectBody">Project Body</label>
+                    <textarea class="form-control" rows="10" ng-model="project.raw" id="projectBody" placeholder="Your MakeHub Project"></textarea>
+                    <p class="help-block">You can use markdow in your project description:</p>
+                    <p class="help-block">**bold text**</p>
+                    <p class="help-block"># Header H1</p>
+                    <p class="help-block">## Header H2</p>
+                    <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
+                    <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Modify</button>
+            </form>
+        </div>
+    </div>
 </div>
