@@ -1,3 +1,18 @@
 body {
- padding-top: 70px;   
+    padding-top: 70px;   
+}
+
+/* Hack to fix the height of the google custom search bar */
+.gsc-input-box {
+    height: 30px !important;
+}
+
+/* Hack to fix the google custom search button */
+input.gsc-search-button {
+    height: 30px !important;
+    border-color: #2f5bb7 !important;
+    background-color: #357ae8 !important;
+    background-image: url('https://www.google.com/uds/css/v2/search_box_icon.png') !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
