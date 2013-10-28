@@ -15,6 +15,9 @@
         <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
         <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
       </div>
-      <button type="submit" class="btn btn-primary">Modify</button>
+      <div ng-switch on="project.ownedByMe">
+          <div ng-switch-when="false"><button type="submit" class="btn btn-primary">Fork</button></div>
+          <div ng-switch-default><button type="submit" class="btn btn-primary">Modify</button></div>
+      </div>
     </form>
 </div>

@@ -134,7 +134,7 @@ app.post('/project/:projectId', function(req, res) {
 
 app.get('/project/:projectId', function(req, res) {
     console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
-
+    var currentlyLoggedInUser = req.user._json.login;
     // https://api.github.com/gists/4224228
     github.conn.gists.get(
         {
@@ -149,6 +149,7 @@ app.get('/project/:projectId', function(req, res) {
             res.send({'error': 'This is not a makehub project.'})
           } else {
             var project = projectParser.parse(gist);
+            project.ownedByMe = currentlyLoggedInUser == gist.user.login;
             res.send(project);
           }
         }
