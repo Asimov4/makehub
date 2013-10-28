@@ -19,7 +19,10 @@ myApp.config(['$routeProvider',
         templateUrl: 'partials/search.html',
         controller: 'SearchCtrl'
       }).
+      when('/home', {
+        templateUrl: 'partials/home.html'
+      }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   }]);

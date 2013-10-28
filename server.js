@@ -78,7 +78,7 @@ app.get('/auth/github',
 app.get('/auth/github/callback',
   github.passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/#/create');
   });
 
 app.get('/logout', function(req, res){
