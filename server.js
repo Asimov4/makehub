@@ -93,9 +93,9 @@ app.post('/create', function(req, res) {
   }
   github.conn.gists.create(
     {
-        description: req.body.description,
+        description: req.body.project.title,
         public: "true",
-        files: {'makehub': {"content": req.body.content}}
+        files: {'makehub': {"content": projectParser.encode(req.body.project) }}
     }, function(err, gist) {
       if (err) {
         res.send({'error': JSON.parse(err.message).message})

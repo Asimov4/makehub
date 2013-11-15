@@ -1,18 +1,98 @@
 <h3>Create new project</h3>
 <form role="form" ng-submit="create()">
   <div class="form-group">
-    <label for="description">Project description</label>
-    <input class="form-control" type="text" ng-model="description" id="description" placeholder="Description">
+    <label for="title">Project title</label>
+    <input class="form-control" type="text" ng-model="title" id="title" placeholder="Title">
   </div>
   <div class="form-group">
-    <label for="projectBody">Project Body</label>
-    <textarea class="form-control" rows="10" ng-model="content" id="projectBody" placeholder="Your New MakeHub ProjectBody"></textarea>
-    <p class="help-block">You can use markdow in your project description:</p>
-    <p class="help-block">**bold text**</p>
-    <p class="help-block"># Header H1</p>
-    <p class="help-block">## Header H2</p>
-    <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
-    <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+    <label for="objective">Objective</label>
+    <textarea class="form-control" rows="2" ng-model="objective" id="objective" placeholder="What are you making?"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="duration">Duration</label>
+    <input class="form-control" type="text" ng-model="duration" id="duration" placeholder="How long does it take to make?">
+  </div>
+  <div class="form-group">
+    <label for="ageGroup">Targeted age group</label>
+    <select class="form-control" id="ageGroup" ng-model="ageGroup">
+      <option value="all" selected="selected">All ages</option>
+      <option value="10-13">10-13</option>
+      <option value="13-16">13-16</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="steps">Materials</label>
+    <div class="row">
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          Item
+        </div>
+        <div class="col-sm-4" style="margin-bottom: 3px">
+          Description
+        </div>
+        <div class="col-sm-1" style="margin-bottom: 3px">
+          Quantity
+        </div>
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          Price
+        </div>
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          Link
+        </div>
+        <div class="col-sm-1">
+          Delete
+        </div>
+    </div>
+    <div ng-repeat="material in materials" class="row">
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="material.item">
+        </div>
+        <div class="col-sm-4" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="material.description">
+        </div>
+        <div class="col-sm-1" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="material.quantity">
+        </div>
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="material.price">
+        </div>
+        <div class="col-sm-2" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="material.link">
+        </div>
+        <div class="col-sm-1">
+          <a href ng-click="materials.splice($index, 1)" class="btn btn-danger">&times;</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11">
+            <a href ng-click="materials.push({})" class="btn btn-primary pull-right">add material</a>
+        </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="steps">Steps</label>
+    <div ng-repeat="(i,step) in steps" class="row">
+        <div class="col-sm-1">
+          <a class="btn btn-default">{{i+1}}.</a>
+        </div>
+        <div class="col-sm-10" style="margin-bottom: 3px">
+          <input class="form-control" type="text" ng-model="step.description">
+        </div>
+        <div class="col-sm-1">
+          <a href ng-click="steps.splice($index, 1)" class="btn btn-danger">&times;</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11">
+            <a href ng-click="steps.push({})" class="btn btn-primary pull-right">add step</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="notes">Additional notes</label>
+    <textarea class="form-control" rows="2" ng-model="notes" id="notes" placeholder="Additional notes..."></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Create</button>
 </form>
