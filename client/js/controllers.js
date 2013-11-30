@@ -1,5 +1,5 @@
-angular.module('makeHub.controllers', ['flash']).
-  controller('ChatController', ['$scope', 'flash', function($scope, flash) {
+angular.module('makeHub.controllers', ['flash'])
+  .controller('ChatController', ['$scope', 'flash', function($scope, flash) {
         $scope.messages = [];
         $scope.projects = [];
         $scope.selectedProject = {};
@@ -94,7 +94,7 @@ angular.module('makeHub.controllers', ['flash']).
   }])
   .controller('CreateCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
-    $scope.steps = [{ description: "Edit me!", pictureUrl: "" }];
+    $scope.steps = [{ description: "Description", media: "" }];
     $scope.materials = [{ item: 'Edit me!', description: "Edit me!", quantity: 0, price: "10€", link: "" }];
       
     $scope.create = function() {

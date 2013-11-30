@@ -16,3 +16,7 @@ input.gsc-search-button {
     background-position: center !important;
     background-repeat: no-repeat !important;
 }
+
+.well img {
+    max-width: 720px;
+}
