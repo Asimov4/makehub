@@ -40,6 +40,7 @@ angular.module('makeHub.controllers', ['flash'])
   }])
   .controller('ProjectCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
+      
         $scope.projectId = $routeParams.projectId;
         var projectUrl = ['project', $routeParams.projectId].join('/');
         $http.get(projectUrl).success(function(data) {
@@ -129,12 +130,39 @@ angular.module('makeHub.controllers', ['flash'])
   }])
   .controller('SearchCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
-    var loadScript = function() {
+    var renderSearch = function() {
+      if (window.google && document.readyState == 'complete') {
+        window.google.search.cse.element.render({
+          div: "test",
+          tag: 'search',
+          attributes: {
+               webSearchQueryAddition: 'more:pagemap:metatags-og_title:makehub',
+               addOverride: 'makehub_'
+          }
+        });
+      } else if (window.google) {
+        window.google.setOnLoadCallback(function() {
+            window.google.search.cse.element.render({
+              div: "test",
+              tag: 'search'
+            });
+        }, true);
+      }
+    };
+
+    window.__gcse = {
+      parsetags: 'explicit',
+      callback: renderSearch,
+      google: null
+    };
+
+    (function() {
       var cx = '002434031809215344527:933xnku0cqq'; // Insert your own Custom Search engine ID here
       var gcse = document.createElement('script'); gcse.type = 'text/javascript';
       gcse.async = true;
-      gcse.src = '//www.google.com/cse/cse.js?cx=' + cx;
+      gcse.src = (document.location.protocol == 'https' ? 'https:' : 'https:') +
+          '//www.google.com/cse/cse.js?cx=' + cx;
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-    };
-    loadScript();
+    })();
+    renderSearch();
   }]);
