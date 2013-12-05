@@ -205,6 +205,7 @@ app.post('/project/fork/:projectId', function (req, res) {
         });
         return;
     }
+    
     console.log("FORKING project " + req.params.projectId);
     github.conn.gists.fork({
             id: req.params.projectId
