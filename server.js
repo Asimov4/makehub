@@ -159,7 +159,7 @@ app.post('/project/:projectId', function (req, res) {
 
 app.get('/project/:projectId', function (req, res) {
     console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
-    var currentlyLoggedInUser = req.user._json.login;
+    var currentlyLoggedInUser = req.user ? req.user._json.login : null;
     // https://api.github.com/gists/4224228
     github.conn.gists.get({
             id: req.params.projectId
@@ -199,6 +199,12 @@ app.get('/project/:projectId', function (req, res) {
 });
 
 app.post('/project/fork/:projectId', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.send({
+            'error': 'Login required'
+        });
+        return;
+    }
     console.log("FORKING project " + req.params.projectId);
     github.conn.gists.fork({
             id: req.params.projectId

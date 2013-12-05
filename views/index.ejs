@@ -17,16 +17,18 @@
                 </nav>
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-click="my_projects()">My Projects <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="project in projects">
-                            <a href="/#/project/{{project.id}}">{{project.description}}</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li><a href="/#/search">Search projects</a></li>
-                    <li><a href="/#/create">Create new Project</a></li>
+                    <% if (user) { %>
+                        <li><a href="/#/create">Create new Project</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-click="my_projects()">My Projects <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="project in projects">
+                                <a href="/#/project/{{project.id}}">{{project.description}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <% } %>
                 </ul>
                 <nav class="pull-right">
                     <% if (!user) { %>
