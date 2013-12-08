@@ -28,7 +28,7 @@ module.exports = {
     },
     encode: function(project) {
         var gistContent = "";
-        gistContent += "# Title \n" + project.notes + "\n";
+        gistContent += "# Title \n" + project.title + "\n";
         gistContent += "# Picture \n" + project.picture + "\n";
         gistContent += "# Objective\n" + project.objective + "\n";
         gistContent += "# Duration\n" + project.duration + "\n";
