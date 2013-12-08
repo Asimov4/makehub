@@ -6,19 +6,124 @@
     <div ng-switch on="project.ownedByMe">
         <div ng-switch-when="false"><button class="btn btn-primary" ng-click="fork()">Fork this project</button></div>
         <div ng-switch-default>
-            <h3>Modify project</h3>
-            <form role="form" ng-submit="modify()">
-                <div class="form-group">
-                    <label for="projectBody">Project Body</label>
-                    <textarea class="form-control" rows="10" ng-model="project.raw" id="projectBody" placeholder="Your MakeHub Project"></textarea>
-                    <p class="help-block">You can use markdow in your project description:</p>
-                    <p class="help-block">**bold text**</p>
-                    <p class="help-block"># Header H1</p>
-                    <p class="help-block">## Header H2</p>
-                    <p class="help-block">* Bullet list item 1<br/>* Buller list item 2</p>
-                    <p class="help-block">1. Numbered list item 1<br/>1. Numbered Bul list item 2</p>
+            <h1>Modify project <a class="btn btn-primary" ng-click="showForm=!showForm">Display form below</a></h1>
+            <form role="form" ng-submit="modify()" ng-hide="!showForm">
+              <div class="form-group">
+                <label for="title">Project title</label>
+                <input class="form-control" type="text" ng-model="project.title" id="title" placeholder="Title">
+              </div>
+              <div class="form-group">
+                <label for="picture">Project picture</label>
+                <input class="form-control" type="text" ng-model="project.picture" id="picture" placeholder="Link to an image">
+                <p class="help-block">Upload an image on <a href="http://imgur.com">imgur.com</a> and paste the link here.</p>
+                <img src="{{ project.picture }}" ng-hide="!project.picture" />
+              </div>
+              <div class="form-group">
+                <label for="objective">Objective</label>
+                <textarea class="form-control" rows="2" ng-model="project.objective" id="objective" placeholder="What are you making?"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="duration">Duration</label>
+                <input class="form-control" type="text" ng-model="project.duration" id="duration" placeholder="How long does it take to make?">
+              </div>
+              <div class="form-group">
+                <label for="ageGroup">Targeted age group</label>
+                <select class="form-control" id="ageGroup" ng-model="project.ageGroup">
+                  <option value="all" selected="selected">All ages</option>
+                  <option value="10-13">10-13</option>
+                  <option value="13-16">13-16</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="steps">Materials</label>
+                <div class="row">
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      Item
+                    </div>
+                    <div class="col-sm-4" style="margin-bottom: 3px">
+                      Description
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      Quantity
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      Price
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      Link
+                    </div>
+                    <div class="col-sm-1">
+                      Delete
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Modify</button>
+                <div ng-repeat="material in project.materials" class="row">
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      <input class="form-control" type="text" ng-model="material.item">
+                    </div>
+                    <div class="col-sm-4" style="margin-bottom: 3px">
+                      <input class="form-control" type="text" ng-model="material.description">
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      <input class="form-control" type="text" ng-model="material.quantity">
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      <input class="form-control" type="text" ng-model="material.price">
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      <input class="form-control" type="text" ng-model="material.link">
+                    </div>
+                    <div class="col-sm-1">
+                      <a href ng-click="materials.splice($index, 1)" class="btn btn-danger">&times;</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <a href ng-click="project.materials.push({})" class="btn btn-primary pull-right">add material</a>
+                    </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="steps">Steps</label>
+                <div ng-repeat="(i,step) in project.steps" class="row">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <a class="btn btn-default">{{i+1}}.</a>
+                        </div>
+                        <div class="col-sm-10" style="margin-bottom: 3px">
+                          <input class="form-control" type="text" ng-model="step.description">
+                        </div>
+                        <div class="col-sm-1">
+                          <a href ng-click="steps.splice($index, 1)" class="btn btn-danger">&times;</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-1" style="margin-bottom: 3px">
+                          <input class="form-control" type="text" ng-model="step.media" placeholder="Paste image link here" >
+                        </div>
+                        <div class="col-sm-5" style="margin-bottom: 3px">
+                          Upload an image on <a href="http://imgur.com">imgur.com</a> and paste the link here.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-11 well">
+                            <img src="{{ step.media }}" ng-hide="!step.media" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <a href ng-click="project.steps.push({})" class="btn btn-primary pull-right">add step</a>
+                    </div>
+                </div>
+              </div>
+            
+              <div class="form-group">
+                <label for="notes">Additional notes</label>
+                <textarea class="form-control" rows="2" ng-model="project.notes" id="notes" placeholder="Additional notes..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Modify</button>
             </form>
         </div>
     </div>

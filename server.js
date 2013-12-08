@@ -136,10 +136,13 @@ app.post('/project/:projectId', function (req, res) {
     }
     var options = {
         id: req.params.projectId,
-        description: req.body.description,
+        description: req.body.project.title,
         files: {
             'makehub': {
-                "content": req.body.raw
+                "content": projectParser.encode(req.body.project)
+            },
+            'makehub.json': {
+                "content": JSON.stringify(req.body.project)
             }
         }
     };

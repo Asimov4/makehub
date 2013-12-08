@@ -77,7 +77,7 @@ angular.module('makeHub.controllers', ['flash'])
           $.ajax({
               url: projectUrl,
               type: "POST",
-              data: $scope.project,
+              data: { project: $scope.project },
               success: function(data) {
                 if (data.error) {
                   flash(data.error);

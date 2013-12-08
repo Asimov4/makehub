@@ -22,6 +22,7 @@ module.exports = {
                 });
                 project['urls'] = urls;
             }
+            project = _.extend(project,JSON.parse(gist.files['makehub.json'].content));
             project['content'] = converter.makeHtml(projectGist);
         }
         return project;
@@ -29,7 +30,7 @@ module.exports = {
     encode: function(project) {
         var gistContent = "";
         gistContent += "# Title \n" + project.title + "\n";
-        gistContent += "# Picture \n" + project.picture + "\n";
+        gistContent += "# Picture \nmedia: " + project.picture + "\n";
         gistContent += "# Objective\n" + project.objective + "\n";
         gistContent += "# Duration\n" + project.duration + "\n";
         gistContent += "# Age Group\n" + project.ageGroup + "\n";
