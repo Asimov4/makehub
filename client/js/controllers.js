@@ -95,20 +95,12 @@ angular.module('makeHub.controllers', ['flash'])
   }])
   .controller('CreateCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
-    $scope.steps = [{ description: "Description", media: "" }];
-    $scope.materials = [{ item: 'Edit me!', description: "Edit me!", quantity: 0, price: "10€", link: "" }];
+    $scope.project = {}
+    $scope.project.steps = [{ description: "Description", media: "" }];
+    $scope.project.materials = [{ item: 'Edit me!', description: "Edit me!", quantity: 0, price: "10€", link: "" }];
       
     $scope.create = function() {
-      var project = {
-        'title': $scope.title,
-        'picture': $scope.picture,
-        'objective': $scope.objective,
-        'duration': $scope.duration,
-        'ageGroup': $scope.ageGroup,
-        'materials': $scope.materials,
-        'steps': $scope.steps,
-        'notes': $scope.notes
-      };
+      var project = $scope.project;
       $.ajax({
           url: "/create",
           type: "POST",
