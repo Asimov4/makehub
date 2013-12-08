@@ -101,6 +101,7 @@ angular.module('makeHub.controllers', ['flash'])
     $scope.create = function() {
       var project = {
         'title': $scope.title,
+        'picture': $scope.picture,
         'objective': $scope.objective,
         'duration': $scope.duration,
         'ageGroup': $scope.ageGroup,

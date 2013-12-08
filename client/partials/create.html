@@ -5,6 +5,12 @@
     <input class="form-control" type="text" ng-model="title" id="title" placeholder="Title">
   </div>
   <div class="form-group">
+    <label for="picture">Project picture</label>
+    <input class="form-control" type="text" ng-model="picture" id="picture" placeholder="Link to an image">
+    <p class="help-block">Upload an image on <a href="http://imgur.com">imgur.com</a> and paste the link here.</p>
+    <img src="{{ picture }}" ng-hide="!picture" />
+  </div>
+  <div class="form-group">
     <label for="objective">Objective</label>
     <textarea class="form-control" rows="2" ng-model="objective" id="objective" placeholder="What are you making?"></textarea>
   </div>
