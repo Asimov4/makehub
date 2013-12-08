@@ -106,6 +106,9 @@ app.post('/create', function (req, res) {
         files: {
             'makehub': {
                 "content": projectParser.encode(req.body.project)
+            },
+            'makehub.json': {
+                "content": JSON.stringify(req.body.project)
             }
         }
     }, function (err, gist) {
