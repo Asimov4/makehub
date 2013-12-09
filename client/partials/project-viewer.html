@@ -1,0 +1,58 @@
+              <h1>{{project.title}}</h1>
+              <img src="{{ project.picture }}" ng-hide="!project.picture" />
+              <h2>Objective</h2>
+              {{project.objective}}
+              <h2>Duration</h2>
+              {{project.duration}}
+              <h2>Targeted age group</h2>
+              {{project.ageGroup}}
+              
+              <h2>Materials</h2>
+                <div class="row">
+                    <div class="col-sm-3" style="margin-bottom: 3px">
+                      Item
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 3px">
+                      Description
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      Quantity
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      Price
+                    </div>
+                </div>
+                <div ng-repeat="material in project.materials" class="row">
+                    <div class="col-sm-3" style="margin-bottom: 3px">
+                      <a href="{{material.link}}">{{material.item}}</a>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 3px">
+                      {{material.description}}
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      {{material.quantity}}
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      {{material.price}}
+                    </div>
+                </div>
+
+              <h2>Steps</h2>
+                <div ng-repeat="(i,step) in project.steps" class="row">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <a class="btn btn-default">{{i+1}}.</a>
+                        </div>
+                        <div class="col-sm-10" style="margin-bottom: 3px">
+                          {{step.description}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-11 well">
+                            <img src="{{ step.media }}" ng-hide="!step.media" />
+                        </div>
+                    </div>
+                </div>
+
+              <h2>Notes</h2>
+              {{project.notes}}
