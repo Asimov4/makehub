@@ -5,7 +5,11 @@
               <div class="form-group">
                 <label for="picture">Project picture</label>
                 <input class="form-control" type="text" ng-model="project.picture" id="picture" placeholder="Link to an image">
-                <p class="help-block">Upload an image on <a href="http://imgur.com">imgur.com</a> and paste the link here.</p>
+                <p class="help-block">You can paste any image link in here. Make sure the image actually displays below.
+                If your image is not on the web yet, you can upload it on <a href="http://postimage.org">postimage.org</a>.
+                Select Resize: 640x480 (for message boards) and click upload.
+                Once the image is uploaded, copy the Direct Link here.
+                </p>
                 <img src="{{ project.picture }}" ng-hide="!project.picture" />
               </div>
               <div class="form-group">
@@ -93,7 +97,11 @@
                           <input class="form-control" type="text" ng-model="step.media" placeholder="Paste image link here" >
                         </div>
                         <div class="col-sm-5" style="margin-bottom: 3px">
-                          Upload an image on <a href="http://imgur.com">imgur.com</a> and paste the link here.
+                            <p class="help-block">You can paste any image link in here. Make sure the image actually displays below.
+                            If your image is not on the web yet, you can upload it on <a href="http://postimage.org">postimage.org</a>.
+                            Select Resize: 640x480 (for message boards) and click upload.
+                            Once the image is uploaded, copy the Direct Link here.
+                            </p>
                         </div>
                     </div>
                     <div class="row">
