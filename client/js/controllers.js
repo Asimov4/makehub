@@ -158,4 +158,37 @@ angular.module('makeHub.controllers', ['flash'])
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
     })();
     renderSearch();
+  }])
+  .controller('FeaturedCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
+  function($scope, flash, $routeParams, $http, $route) {
+    $scope.featuredProjects = [];
+    window.displayFeaturedProjects = function(query) {
+        var entries = query.feed.entry;
+        $.each(entries, function(index,entry) {
+            if (entry.title.$t.indexOf("Row") == -1) {
+                console.log(entry);
+                var content = entry.content.$t.split(", ");
+                $scope.featuredProjects.push({
+                    "id": entry.title.$t,
+                    "title": content[0].replace('title: ',''),
+                    "pictureURL": content[1].replace('pictureurl: ','')
+                    });
+            }
+        });
+        console.log($scope.featuredProjects);
+        $scope.$apply();
+    };
+     
+    var retrieveFeaturedProjects = function() {
+        // Retrieve the JSON feed.
+        var script = document.createElement('script');
+        
+        script.setAttribute('src', 'https://spreadsheets.google.com/feeds/list/0Am2p5Wh_lWpndHhDX1Q5azBuXzk1amNXN2dmQm9WTVE/od6/public/values?alt=json-in-script&callback=displayFeaturedProjects');
+        
+        script.setAttribute('id', 'jsonScript');
+        script.setAttribute('type', 'text/javascript');
+        document.documentElement.firstChild.appendChild(script);
+    };
+
+    retrieveFeaturedProjects();
   }]);

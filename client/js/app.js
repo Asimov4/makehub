@@ -19,6 +19,10 @@ myApp.config(['$routeProvider',
         templateUrl: 'partials/search.html',
         controller: 'SearchCtrl'
       }).
+      when('/featured', {
+        templateUrl: 'partials/featured.html',
+        controller: 'FeaturedCtrl'
+      }).
       when('/home', {
         templateUrl: 'partials/home.html'
       }).
