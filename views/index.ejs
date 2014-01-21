@@ -35,7 +35,7 @@
                     <% if (!user) { %>
                             Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
                     <% } else { %>
-                            Hello, <a href="/account"><%= user.displayName %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
+                            Hello, <a target="_blank" href="https://github.com/settings/profile"><%= user.username %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
                     <% } %>
                 </nav>
             </div>
