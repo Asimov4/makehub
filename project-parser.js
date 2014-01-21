@@ -46,6 +46,7 @@ module.exports = {
         _.each(project.steps, function(step) {
           gistContent += "## " + step.description + "\n";
           gistContent += "media: " + step.media + "\n\n";
+          gistContent += "notes: " + step.notes + "\n\n";
         })
         gistContent += "# Notes\n" + project.notes + "\n";
         console.log(gistContent);
