@@ -175,7 +175,7 @@ app.get('/project/:projectId', function (req, res) {
                     'error': 'This is not a makehub project.'
                 })
             } else {
-                
+
                 var project = projectParser.parse(gist);
                 project.ownedByMe = currentlyLoggedInUser == gist.user.login;
 
@@ -183,12 +183,12 @@ app.get('/project/:projectId', function (req, res) {
                     urls: project.urls,
                     maxWidth: 450
                 };
-                
+
                 project['urls'].forEach(function(media, index) {
                     var replaceValue = "<img src='" + media.replace("http:","https:") + "'>";
                     project['content'] = project['content'].replace("{{" + index + "}}", replaceValue);
                 });
-            
+
                 console.log(project);
                 res.send(project);
 
@@ -204,7 +204,7 @@ app.post('/project/fork/:projectId', function (req, res) {
         });
         return;
     }
-    
+
     console.log("FORKING project " + req.params.projectId);
     github.conn.gists.fork({
             id: req.params.projectId
