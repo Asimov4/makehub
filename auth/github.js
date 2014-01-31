@@ -87,5 +87,16 @@ module.exports.GITHUB_CLIENT_SECRET = GITHUB_CLIENT_SECRET
 module.exports.HOSTNAME = HOSTNAME
 
 // Expose module public objects
-module.exports.conn = github_connexion
+module.exports.conn = function(req) {
+    var token = "";
+    if (req.isAuthenticated()) {
+        token = req.session.passport.user.accessToken;
+        github_connexion.authenticate({
+            type: "oauth",
+            token: token
+        });
+    }
+
+    return github_connexion;
+}
 module.exports.passport = passport
