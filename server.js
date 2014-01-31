@@ -93,6 +93,10 @@ app.post('/create', function (req, res) {
         });
         return;
     }
+    github.conn.authenticate({
+        type: "oauth",
+        token: req.session.passport.user.accessToken
+    });
     github.conn.gists.create({
         description: req.body.project.title,
         public: "true",
@@ -139,6 +143,10 @@ app.post('/project/:projectId', function (req, res) {
             }
         }
     };
+    github.conn.authenticate({
+        type: "oauth",
+        token: req.session.passport.user.accessToken
+    });
     github.conn.gists.edit(
         options, function (err, gist) {
             if (err) {
@@ -160,6 +168,10 @@ app.get('/project/:projectId', function (req, res) {
     console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
     var currentlyLoggedInUser = req.user ? req.user._json.login : null;
     // https://api.github.com/gists/4224228
+    github.conn.authenticate({
+        type: "oauth",
+        token: req.session.passport.user.accessToken
+    });
     github.conn.gists.get({
             id: req.params.projectId
         },
@@ -206,6 +218,10 @@ app.post('/project/fork/:projectId', function (req, res) {
     }
     
     console.log("FORKING project " + req.params.projectId);
+    github.conn.authenticate({
+        type: "oauth",
+        token: req.session.passport.user.accessToken
+    });
     github.conn.gists.fork({
             id: req.params.projectId
         },
@@ -226,6 +242,10 @@ app.post('/project/fork/:projectId', function (req, res) {
 });
 
 app.post('/my_projects', function (req, res) {
+    github.conn.authenticate({
+        type: "oauth",
+        token: req.session.passport.user.accessToken
+    });
     github.conn.gists.getFromUser({
             user: req.user._json.login
         },

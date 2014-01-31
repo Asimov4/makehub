@@ -65,10 +65,7 @@ passport.use(new GitHubStrategy({
     scope: "gist"
   },
   function(accessToken, refreshToken, profile, done) {
-    github_connexion.authenticate({
-        type: "oauth",
-        token: accessToken
-    });
+    profile.accessToken = accessToken;
     // asynchronous verification, for effect...
     process.nextTick(function () {
 
