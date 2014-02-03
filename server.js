@@ -52,7 +52,8 @@ app.configure(function () {
 
 app.get('/', function (req, res) {
     res.render('index', {
-        user: req.user
+        user: req.user,
+        hostname: github.HOSTNAME
     });
 });
 
