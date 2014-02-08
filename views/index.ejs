@@ -3,24 +3,29 @@
   <head>
     <title>MakeHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <script type="text/javascript" src="//use.typekit.net/nqv2yeh.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
+  
   <body>
+    <div class="header">
+    <div class="logo"><a href="http://www.makehub.io"><img src="https://s3.amazonaws.com/honeycomb_14/logo_03.png"/></a></div>
+    </div>
+    
     <div ng-controller="ChatController">
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <nav class="navbar-header" role="navigation">
-                    <a class="navbar-brand" href="#">MakeHub</a>
                 </nav>
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="/#/search">Search projects</a></li>
-                    <li><a href="/#/featured">Featured projects</a></li>
+                
+                    <div class="navlinks"><a href="#">Home</a></div>
+                    <div class="navlinks"><a href="/#/search">Search projects</a>
+                    <div class="navlinks"><a href="/#/featured">Featured projects</a></div>
+                    
                     <% if (user) { %>
-                        <li><a href="/#/create">Create new Project</a></li>
+                        <a href="/#/create">Create new Project</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-click="my_projects()">My Projects <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -30,8 +35,8 @@
                             </ul>
                         </li>
                     <% } %>
-                </ul>
-                <nav class="pull-right">
+                
+                
                     <% if (!user) { %>
                             Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
                     <% } else { %>

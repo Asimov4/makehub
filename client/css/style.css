@@ -1,10 +1,86 @@
-body {
+
+.header {
+	z-index: 1;
+	position: static;
+	width: 100%;
+	height: 72px;
+	background-color: #35373F;
+	margin: 0 auto;
+	
+
+}
+
+.logo {
+    padding-left: 144px;
+    padding-top: 18px;
+    
+}
+
+.navbar {
+    font-size: 16px;
+    color: #e5eaf2;
+    padding-left: 400px;
+    margin-top: -55px;
+    font-family: "Runda";
+    
+}
+
+.navlinks {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+a,
+a:link,
+a:active,
+a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #21b598;
+}
+
+p {
+font-family: "Runda"; 
+color: #7c8797;
+    
+}
+
+
+.item,
+.description,
+.quantity,
+.price {
+    color: #000000;
+}
+
+.materials-row {
+    background-color: #21b598;
+    padding: 2px;
+    font-size: 30px;
+}
+
+.steps-row {
+    background-color: #4a90e2;
+    padding: 2px;
+    font-size: 30px;
+}
+
+
+.body {
     padding-top: 70px;   
+    font-family: "Runda", Arial, Helvetica, Sans-Serif;
+    color: #7c8797;
+    line-height: 25px;
+    
 }
 
 /* Hack to fix the height of the google custom search bar */
 .gsc-input-box {
     height: 30px !important;
+    
 }
 
 /* Hack to fix the google custom search button */
@@ -15,6 +91,7 @@ input.gsc-search-button {
     background-image: url('https://www.google.com/uds/css/v2/search_box_icon.png') !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+    
 }
 
 .well img {
@@ -22,6 +99,7 @@ input.gsc-search-button {
 }
 
 .featured{
+    
     position:relative;
     width: 100%;
     height: 0;
