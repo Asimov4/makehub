@@ -1,5 +1,5 @@
 <div ng-show="project" style="overflow:none">
-    <p>Project: <a href="/#/project/{{project.user}}/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
+    <p>Project: <a href="/#/project/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
     <div ng-hide="project.ownedByMe"><a class="btn btn-primary" ng-click="fork()">Fork this project</a></div>
     <div ng-hide="!project.ownedByMe">
         <a class="btn btn-primary" ng-click="showForm=!showForm">Edit Project: {{showForm}}</a>
