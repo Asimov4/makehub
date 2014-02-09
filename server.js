@@ -52,7 +52,8 @@ app.configure(function () {
 
 app.get('/', function (req, res) {
     res.render('index', {
-        user: req.user
+        user: req.user,
+        hostname: github.HOSTNAME
     });
 });
 
@@ -93,7 +94,7 @@ app.post('/create', function (req, res) {
         });
         return;
     }
-    github.conn.gists.create({
+    github.conn(req).gists.create({
         description: req.body.project.title,
         public: "true",
         files: {
@@ -139,7 +140,7 @@ app.post('/project/:projectId', function (req, res) {
             }
         }
     };
-    github.conn.gists.edit(
+    github.conn(req).gists.edit(
         options, function (err, gist) {
             if (err) {
                 res.send({
@@ -160,7 +161,7 @@ app.get('/project/:projectId', function (req, res) {
     console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
     var currentlyLoggedInUser = req.user ? req.user._json.login : null;
     // https://api.github.com/gists/4224228
-    github.conn.gists.get({
+    github.conn(req).gists.get({
             id: req.params.projectId
         },
         function (err, gist) {
@@ -206,7 +207,7 @@ app.post('/project/fork/:projectId', function (req, res) {
     }
 
     console.log("FORKING project " + req.params.projectId);
-    github.conn.gists.fork({
+    github.conn(req).gists.fork({
             id: req.params.projectId
         },
         function (err, gist) {
@@ -226,7 +227,7 @@ app.post('/project/fork/:projectId', function (req, res) {
 });
 
 app.post('/my_projects', function (req, res) {
-    github.conn.gists.getFromUser({
+    github.conn(req).gists.getFromUser({
             user: req.user._json.login
         },
         function (err, res2) {
