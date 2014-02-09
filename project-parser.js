@@ -4,7 +4,6 @@ var _ = require('underscore');
 
 module.exports = {
     parse: function(gist, callback) {
-        //return projectContent.split('\n');
         var project =  {
           'id': gist.id,
           'user': gist.user.login,
@@ -24,6 +23,10 @@ module.exports = {
             }
             project = _.extend(project,JSON.parse(gist.files['makehub.json'].content));
             project['content'] = converter.makeHtml(projectGist);
+            // We need to reset the following values as they may have been overriden by the makehub.json file
+            project['id'] = gist.id;
+            project['user'] = gist.user.login;
+            project['description'] = gist.description;
         }
         return project;
     },
