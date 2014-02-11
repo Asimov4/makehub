@@ -1,16 +1,13 @@
 <!doctype html>
-<html lang="en" 
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:fb="http://ogp.me/ns/fb#"
-      ng-app="makeHub">
-  <head>
+<html lang="en" ng-app="makeHub">
+<head>
     <title>MakeHub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="<%= hostname %>/img/octobot.png" />
-    <meta property="og:title" content="Makehub | projects for makers" />
-    <meta property="og:description" content="We’re improving hands-on S.T.E.A.M education by reducing the friction associated with planning educational maker projects. We're doing this by developing on online platform for makers and educators." />
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,700|Lato:300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="/css/bootswatch.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -21,7 +18,7 @@
 
 
         #headerwrap {
-            background-image: url('/img/w.jpg');
+            background-image: url('/img/banner_green.png');
             background-size: 100% 100%;
             height: 400px;
         }
@@ -71,7 +68,8 @@
         }
 
         .navbar-default {
-            background-color: #2D2D2D;
+            background-color: #2e3138;
+            border-color: #2e3138;
         }
 
         .projects {
@@ -80,12 +78,16 @@
 
         .footer {
             background-color: #2D2D2D;
-            color: #43C8B1;
+            color: #00be9b;
             font-size: 30px;
         }
 
         .homepage-section {
             padding: 50px 0;
+        }
+        
+        .homepage-section .fa{
+           color: #00be9b; 
         }
 
         .footer i {
@@ -203,7 +205,7 @@
             </ul>
             <nav class="pull-right">
                 <% if (!user) { %>
-                Welcome! Please <a href="/auth/github" class="btn btn-default navbar-btn">Sign In</a>
+                Welcome! Please <a href="/auth/github" class="btn btn-primary navbar-btn">Sign In</a>
                 <% } else { %>
                 Hello, <a target="_blank" href="https://github.com/settings/profile"><%= user.username %></a> <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
                 <% } %>
