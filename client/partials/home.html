@@ -1,51 +1,76 @@
-<div class="jumbotron" style="overflow:none">
-    <h1>WHAT IS MAKEHUB?</h1>
-    <p class="lead">We’re improving hands-on S.T.E.A.M education by reducing the friction associated with planning educational maker projects. We're doing this by developing on online platform for makers and educators.</p>
-    <p><a class="btn btn-lg btn-success" href="https://github.com/join">Register an account on github and come back here to login</a></p>
-    <p><a class="btn btn-lg btn-primary" href="/auth/github">Login directly if you already have a github account</a></p>
-</div>
+    <div ng-controller="ChatController">
+        <div id="headerwrap">
+            <div class="container">
+                <div class="row centered">
+                    <div class="col-lg-8 col-lg-offset-2 banner">
+                        <h1>It Doesn't Take a Rocket <b>Scientist</b></h1>
+                        <h2>It Takes a Kid</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="intros">
+        <div class="container homepage-section">
+            <div class="row centered">
+    
+                <div class="col-lg-4">
+                    <i class="fa fa-heart"></i><h4>WHAT IS MAKEHUB?</h4>
+                    <p>We’re improving hands-on S.T.E.A.M education by reducing the friction associated with planning educational maker projects. We're doing this by developing on online platform for makers and educators.</p>
+                </div>
+    
+                <div class="col-lg-4">
+                    <i class="fa fa-github"></i><h4>HOW TO USE?</h4>
+                    <p>In order to use MakeHub, you need to
+                        <a class="" href="https://github.com/join">register an account with github.</a>
+                        and then come back to MakeHub to login. GitHub is a place that helps people share coding projects.
+                        We leverage Github's infrastructure to allow you to copy and fork projects without writing a single line of code.
+                    </p>
+                </div>
+                <div class="col-lg-4"><i class="fa fa-globe"></i><h4>HACKIDEMIA</h4>
+                    <p>MakeHub is a Hackidemia project. <a href="#">Hackidemia</a> is a mobile invention lab that works with kids all over the world.
+                        Since September 2012 we’ve
+                        worked with over 3000 children and trained over 200 mentors on 4 continents.
+                        <a href="#">learn more</a>
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
 
-<div style="overflow:none">
-<h3>HOW TO USE?</h3>
+    <div class="projects homepage-section">
 
-<p>In order to use MakeHub, you need to
-<a class="btn btn-success" href="https://github.com/join">register an account with github.</a></p>
-<p>Register there and then come back to MakeHub to login. This is because we
-rely on github's infrastructure to build MakeHub so that we don't have to
-reinvent the wheel. But don't worry! You won't need to open any terminal
-or write any lines of code.</p>
-<p>GitHub is a place that helps people share coding projects.
-One of its features is forking. It means that anyone can copy your project and
-start making changes to it to create their own version of it. Github also has a nice logo:
-</p>
+        <div class="container" ng-controller="FeaturedCtrl">
+            <div class="row centered">
 
-<p align="center"><img width=200px src="/img/github-logo-transparent.png"></p>
+                <div class="col-lg-12">
+                    <h4>RECENT PROJECTS</h4>
 
-<h3>HACKIDEMIA</h3>
+                </div>
+            </div>
+            <div class="row centered">
+                <div ng-repeat="project in featuredProjects" class="col-md-4" style="margin-bottom: 30px">
+                    <a href="/#/project/{{project.id}}">
+                        <div class="featured img-thumbnail" style="background-image:url('{{ project.pictureURL }}')">
+                            <p style="color: white; font-size: 1.3em" align="center">{{project.title}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>This is an Hackidemia project. Click on the logo to visit the Hackidemia website.</p>
+    <div class="footer homepage-section">
 
-<p align="center"><a target="_blank" href="http://www.hackidemia.com/"><img src="/img/robot.png"></a></p>
-
-<h3>BACKGROUND</h3>
-
-<p><a target="_blank" href="http://www.hackidemia.com/">Hackidemia</a> is a mobile invention lab that works with kids all over the world.
-For example, we taught children in Nigeria how to build a solar panel because
-they didn’t have access to electricity. Or children in Brazil how to build a
-water filter because they need access to clean water. Since September 2012 we’ve
-worked with over 3000 children and trained over 200 mentors on 4 continents.</p>
-<p align="center"><img src="/img/w1.png" width="500px"></p>
-<p>From Hackidemia Brazil</p>
-<p>The Makehub online platform provides a layer of meaning and action for the vast
-
-world of maker projects found across the internet. The app does this in the
-following ways:</p>
-<p>Users can save projects to their personal lab to share, revisit,
-and remix later.</p>
-<p>Users can create custom kits and buy the required materials for any project
-directly through Makehub platform.</p>
-<p>Our app connects makers and educators with related content, activities, and
-curriculum from across the web. This is possible through partnerships with
-open education platforms like Khan Academy and Gooru.</p>
-<p>The platform has two components: a browser extension and a web application.</p>
-</div>
+        <div class="container">
+            <div class="row centered">
+                <div class="col-lg-12">
+                  <i class="fa fa-twitter"></i>
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-google-plus"></i>
+                </div>
+            </div>
+        </div>
+    </div>

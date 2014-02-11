@@ -1,5 +1,60 @@
-              <h1>{{project.title}}</h1>
-              <img src="{{ project.picture }}" ng-hide="!project.picture" />
+<div class="container">
+   <div class="row">
+        <div class="col-lg-12">
+            <h1>{{project.title}}</h1>
+            <img src="{{ project.picture }}" ng-hide="!project.picture" />
+            <h2>Objective</h2>
+              {{project.objective}}
+              <h2>Duration</h2>
+              {{project.duration}}
+              <h2>Targeted age group</h2>
+              {{project.ageGroup}}
+        </div>
+    </div>
+    <div class="row" class="materials">
+        <div class="col-lg-12">
+          <h2>Materials</h2>
+          <div ng-repeat="material in project.materials" class="row">
+                    <div class="col-sm-3" style="margin-bottom: 3px">
+                      <a href="{{material.link}}">{{material.item}}</a>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 3px">
+                      {{material.description}}
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      {{material.quantity}}
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      {{material.price}}
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    
+    <div class="row" class="steps">
+        <div class="col-lg-12">
+          <h2>Materials</h2>
+          <div ng-repeat="material in project.materials" class="row">
+                    <div class="col-sm-3" style="margin-bottom: 3px">
+                      <a href="{{material.link}}">{{material.item}}</a>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 3px">
+                      {{material.description}}
+                    </div>
+                    <div class="col-sm-1" style="margin-bottom: 3px">
+                      {{material.quantity}}
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 3px">
+                      {{material.price}}
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>       
+              
+
               <h2>Objective</h2>
               {{project.objective}}
               <h2>Duration</h2>
