@@ -50,6 +50,11 @@ body {
 .navbar-default {
     background-color: #2e3138;
     border-color: #2e3138;
+    color: #fff;
+}
+
+.navbar-btn {
+    margin-left: 1em;
 }
 
 .container.project {
@@ -106,7 +111,7 @@ p {
     background-color: #00be9b;
 }
 
-.steps img {
+img {
   max-width: 100%;
 }
 .step-number {
