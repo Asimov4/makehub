@@ -1,13 +1,27 @@
-<div ng-show="project" style="overflow:none">
-    <p>Project: <a href="/#/project/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
-    <div ng-hide="project.ownedByMe"><a class="btn btn-primary" ng-click="fork()">Fork this project</a></div>
-    <div ng-hide="!project.ownedByMe">
-        <a class="btn btn-primary" ng-click="showForm=!showForm">Edit Project: {{showForm}}</a>
+<div class="container project" ng-show="project">
+    <div class="row section" style="border:none;">
+        <div class="col-md-7 col-lg-offset-1">
+            <h1>{{project.title}}</h1>
+            <p><a href="/#/project/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
+        </div>
+        <div class="col-lg-3">
+            
+              <a class="btn btn-primary pull-right" 
+                 ng-hide="project.ownedByMe" 
+                 ng-click="fork()">Fork this project</a>
+                 
+            <div ng-hide="!project.ownedByMe">
+                <a class="btn btn-primary pull-right" 
+                   ng-click="showForm=!showForm">
+                   {{ showForm ? 'Cancel edit' : 'Edit project'}}</a>
+            </div>
+        </div>
     </div>
+    
     <form role="form" ng-submit="modify()" ng-hide="!showForm">
-        <div data-ng-include data-src="'partials/project-editor.html'"></div>
-        <button type="submit" class="btn btn-primary">Modify</button>
+      <div data-ng-include data-src="'partials/project-editor.html'"></div>
+      <button type="submit" class="btn btn-primary">Modify</button>
     </form>
     <div data-ng-include data-src="'partials/project-viewer.html'" ng-hide="showForm"></div>
-    
+
 </div>

@@ -34,3 +34,87 @@ input.gsc-search-button {
     box-shadow: inset 0px 50px 100px -30px;
     color: gray;
 }
+
+.footer i {
+margin: 20px;
+}
+
+.footer {
+    background-color: #2D2D2D;
+    color: #00be9b;
+    font-size: 30px;
+}
+body {
+    padding-top: 0;
+}
+.navbar-default {
+    background-color: #2e3138;
+    border-color: #2e3138;
+}
+
+.container.project {
+    margin-top: 70px;
+    color: #6e6e6e;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.project h1,
+.project h2,
+.project h3 {
+    font-weight: 700;
+    
+}
+
+.project .btn-primary {
+    margin-top: 20px;
+}
+
+.project .row {
+  padding: 1em 0;    
+}
+
+.section {
+    background-color: #ecf1f4;
+    border-bottom: 4px solid #fff;
+}
+
+.row.section-header {
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.row.section-header h2 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.materials.section-header {
+    background-color: #408be5;
+}
+
+.materials-item {
+    color: #408be5;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.steps.section-header {
+    background-color: #00be9b;
+}
+
+.steps img {
+  max-width: 100%;
+}
+.step-number {
+    font-weight: bold;
+color: #222;
+margin: 0 0.3em 0 .5em;
+}
+
+.notes.section-header {
+    background-color: #666;
+}
