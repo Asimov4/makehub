@@ -3,11 +3,12 @@
     <div ng-hide="project.ownedByMe"><a class="btn btn-primary" ng-click="fork()">Fork this project</a></div>
     <div ng-hide="!project.ownedByMe">
         <a class="btn btn-primary" ng-click="showForm=!showForm">Edit Project: {{showForm}}</a>
+        <a class="btn btn-danger" ng-really-message="Are you sure you want to delete this project? This cannot be undone." ng-really-click="delete()">Delete this project</a>
     </div>
     <form role="form" ng-submit="modify()" ng-hide="!showForm">
         <div data-ng-include data-src="'partials/project-editor.html'"></div>
         <button type="submit" class="btn btn-primary">Modify</button>
     </form>
     <div data-ng-include data-src="'partials/project-viewer.html'" ng-hide="showForm"></div>
-    
+
 </div>

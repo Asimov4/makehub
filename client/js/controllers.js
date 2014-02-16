@@ -72,6 +72,26 @@ angular.module('makeHub.controllers', ['flash'])
           });
         };
 
+        $scope.delete = function () {
+          var projectUrl = ['project', 'delete', $scope.project.id].join('/');
+          $.ajax({
+              url: projectUrl,
+              type: "POST",
+              data: $scope.project,
+              success: function(data) {
+                if (data.error) {
+                  flash(data.error);
+                } else {
+                  flash('Project deleted!');
+                  window.location = '#/create';
+                }
+              },
+              error: function() {
+                console.log('process error');
+              },
+          });
+        };
+
         $scope.modify = function () {
           var projectUrl = ['project', $scope.project.id].join('/');
           $.ajax({
@@ -191,4 +211,17 @@ angular.module('makeHub.controllers', ['flash'])
     };
 
     retrieveFeaturedProjects();
+  }])
+  .directive('ngReallyClick', [function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                var message = attrs.ngReallyMessage;
+                if (message && confirm(message)) {
+                    scope.$apply(attrs.ngReallyClick);
+                }
+            });
+        }
+    }
   }]);
