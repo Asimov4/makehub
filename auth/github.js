@@ -1,4 +1,4 @@
-// 
+//
 //Github api authentication handler
 //
 
@@ -12,6 +12,10 @@ var GitHubStrategy = require('passport-github').Strategy;
 var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 var HOSTNAME = process.env.MAKEHUB_HOSTNAME;
+
+var GITHUB_CLIENT_ID = '4675545a6c343a326a94';
+var GITHUB_CLIENT_SECRET = 'b83650525b79e323af52f2f4f594928c1281c966';
+var HOSTNAME = 'https://makehub-c9-devnook.c9.io';
 
 
 // Update github api connexion parameters
