@@ -32,6 +32,9 @@ process.argv.forEach(function(val, index, array) {
   }
 });
 
+console.log(process.env)
+console.log(HOSTNAME)
+
 
 // Set up a Github connexion api object
 var github_connexion = new GitHubApi({
