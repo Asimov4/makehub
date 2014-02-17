@@ -1,0 +1,54 @@
+<div class="row section">
+    <div class="col-md-10 col-lg-offset-1">
+        <img src="{{ project.picture }}" class="cover-image"/>
+        <h3>Objective</h3>
+        {{project.objective}}
+        <p>Duration: {{project.duration}} | Targeted age group: {{project.ageGroup}}</p>
+    </div>
+</div>  
+
+<div class="row materials section-header">
+    <div class="col-md-10 col-lg-offset-1">
+      <h2>Materials</h2>
+    </div>
+</div>
+<div class="row materials section" ng-repeat="material in project.materials">
+    <div class="col-md-10 col-lg-offset-1">
+      <div >
+        <p><a href="{{material.link}}" class="materials-item">{{material.item}}</a></p>
+        <p>Qty: {{material.quantity}} | {{material.price}}</p>
+        <p>{{material.description}}</p>
+      </div>
+    </div>
+</div>
+
+<div class="row steps section-header">
+    <div class="col-md-10 col-lg-offset-1">
+        <h2>Steps</h2>
+    </div>
+</div>
+        
+<div class="row steps section" ng-repeat="(i,step) in project.steps">
+    <div class="col-md-10 col-lg-offset-1">
+        <div>
+            <p>
+              <input type="checkbox">
+              <span class="step-number">{{i+1}}.</span>{{step.description}}</p>
+            <img src="{{ step.media }}" ng-hide="!step.media" />
+            <p ng-hide="!step.notes">{{ step.notes }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row notes section-header" ng-show="project.notes">
+    <div class="col-md-10 col-lg-offset-1">
+        <h2>Notes</h2>
+    </div>
+</div>
+
+<div class="row notes section" ng-show="project.notes">
+    <div class="col-md-10 col-lg-offset-1">
+        <p>{{project.notes}}</p>
+    </div>
+</div>
+              

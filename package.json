@@ -1,35 +1,32 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
-  "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
-  ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
-  },
-  "homepage": "http://www.openshift.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openshift/origin-server"
-  },
-
-  "engines": {
-    "node": ">= 0.6.0",
-    "npm": ">= 1.0.0"
-  },
-
-  "dependencies": {
-    "express": "~3.4.4"
-  },
-  "devDependencies": {},
-  "bundleDependencies": [],
-
-  "private": true,
-  "main": "server.js"
+name: "makehub",
+version: "1.0.0",
+description: "Github for maker projects",
+main: "server.js",
+repository: {
+type: "git",
+url: "https://gitub.com/openshift/origin-server"
+},
+author: {
+name: "Thibaut Labarre",
+email: "asimov4@gmail.comg",
+url: "http://www.openshift.com/"
+},
+engines: {
+node: ">= 0.6.0",
+npm: ">= 1.0.0"
+},
+dependencies: {
+async: "~0.2.8",
+express: "~3.2.4",
+socket.io: "~0.9.14",
+ejs: "~0.8.4",
+passport: ">= 0.0.0",
+passport-github: ">= 0.0.0",
+ejs-locals: "~1.0.2",
+underscore: "~1.5.2"
+},
+devDependencies: { },
+bundleDependencies: [ ],
+private: true
 }

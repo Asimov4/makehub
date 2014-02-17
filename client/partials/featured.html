@@ -1,0 +1,9 @@
+<h3>Featured</h3>
+
+<div ng-repeat="project in featuredProjects" class="col-md-4" style="margin-bottom: 30px">
+    <a href="/#/project/{{project.id}}">
+        <div class="featured img-thumbnail" style="background-image:url('{{ project.pictureURL }}')">
+            <p style="color: white; font-size: 1.3em" align="center">{{project.title}}</p>
+        </div>
+    </a>
+</div>

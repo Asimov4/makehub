@@ -1,0 +1,150 @@
+    <style type="text/css">
+
+
+
+        #headerwrap {
+            background-image: url('/img/banner_green.png');
+            background-size: 100% 100%;
+            height: 400px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway";
+            font-weight: 300;
+            color: #333;
+
+        }
+
+        #headerwrap h2,
+        #headerwrap h1 {
+            color: #FFF;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        #headerwrap h1 {
+            font-size: 70px;
+            margin-top: 100px;
+
+        }
+        #headerwrap h2 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h4 {
+            font-weight: 700;
+            margin: 20px 0 30px 0;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .homepage-section p {
+            font-family: "Lato", sans-serif;
+        }
+
+        
+        
+        .intros {
+            background-color: #F2F2F2;
+            padding-top: 0;
+        }
+
+        
+
+        .projects {
+            background-color: #E0E0E0;
+        }
+
+        
+
+        .homepage-section {
+            padding: 50px 0;
+        }
+        
+        .homepage-section .fa{
+         color: #00be9b; 
+     }
+
+     
+</style>
+<div ng-controller="ChatController">
+        <div id="headerwrap">
+            <div class="container">
+                <div class="row centered">
+                    <div class="col-lg-8 col-lg-offset-2 banner">
+                        <h1>It Doesn't Take a Rocket <b>Scientist</b></h1>
+                        <h2>It Takes a Kid</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="intros">
+        <div class="container homepage-section">
+            <div class="row centered">
+    
+                <div class="col-lg-4">
+                    <i class="fa fa-heart"></i><h4>WHAT IS MAKEHUB?</h4>
+                    <p>We’re improving hands-on S.T.E.A.M education by reducing the friction associated with planning educational maker projects. We're doing this by developing on online platform for makers and educators.</p>
+                </div>
+    
+                <div class="col-lg-4">
+                    <i class="fa fa-github"></i><h4>HOW TO USE?</h4>
+                    <p>In order to use MakeHub, you need to
+                        <a class="" href="https://github.com/join">register an account with github.</a>
+                        and then come back to MakeHub to login. GitHub is a place that helps people share coding projects.
+                        We leverage Github's infrastructure to allow you to copy and fork projects without writing a single line of code.
+                    </p>
+                </div>
+                <div class="col-lg-4"><i class="fa fa-globe"></i><h4>HACKIDEMIA</h4>
+                    <p>MakeHub is a Hackidemia project. <a href="#">Hackidemia</a> is a mobile invention lab that works with kids all over the world.
+                        Since September 2012 we’ve
+                        worked with over 3000 children and trained over 200 mentors on 4 continents.
+                        <a href="#">learn more</a>
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <div class="projects homepage-section">
+
+        <div class="container" ng-controller="FeaturedCtrl">
+            <div class="row centered">
+
+                <div class="col-lg-12">
+                    <h4>RECENT PROJECTS</h4>
+
+                </div>
+            </div>
+            <div class="row centered">
+                <div ng-repeat="project in featuredProjects" class="col-md-4" style="margin-bottom: 30px">
+                    <a href="/#/project/{{project.id}}">
+                        <div class="featured img-thumbnail" style="background-image:url('{{ project.pictureURL }}')">
+                            <p style="color: white; font-size: 1.3em" align="center">{{project.title}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer homepage-section">
+
+        <div class="container">
+            <div class="row centered">
+                <div class="col-lg-12">
+                  <i class="fa fa-twitter"></i>
+                  <i class="fa fa-facebook"></i>
+                  <i class="fa fa-google-plus"></i>
+                </div>
+            </div>
+        </div>
+    </div>

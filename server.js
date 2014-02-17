@@ -1,159 +1,262 @@
-#!/bin/env node
-//  OpenShift sample Node application
+// # MakeHub server
+//
+// Core imports
+var http = require('http');
+var https = require('https');
+var path = require('path');
+
+// Third party modules import
+var async = require('async');
 var express = require('express');
-var fs      = require('fs');
+var util = require('util');
+var _ = require('underscore');
+
+// MakeHub imports
+var github = require('./auth/github');
+var projectParser = require('./project-parser');
+var MAKEHUB_PROJECT_FLAG = "(¯`·._.·[ MakeHub Project ]·._.·´¯)";
+var pagedown = require("pagedown");
+var converter = pagedown.getSanitizingConverter();
+
+console.log('Running application with GITHUB_CLIENT_ID = ' + github.GITHUB_CLIENT_ID);
+console.log('Running application with GITHUB_CLIENT_SECRET = ' + github.GITHUB_CLIENT_SECRET);
+console.log('Running application on ' + github.HOSTNAME);
+
+//
+// Creates a new instance of SimpleServer with the following options:
+//  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
+//
+var app = express();
+
+// configure Express
+app.configure(function () {
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'ejs');
+    app.use(express.logger());
+    app.use(express.cookieParser());
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(express.session({
+        secret: 'keyboard cat'
+    }));
+
+    // Initialize Passport!  Also use passport.session() middleware, to support
+    // persistent login sessions (recommended).
+    app.use(github.passport.initialize());
+    app.use(github.passport.session());
+
+    app.use(app.router);
+    app.use(express.static(__dirname + '/client'));
+});
 
 
-/**
- *  Define the sample application.
- */
-var SampleApp = function() {
+app.get('/', function (req, res) {
+    res.render('index', {
+        user: req.user,
+        hostname: github.HOSTNAME
+    });
+});
 
-    //  Scope.
-    var self = this;
+// GET /auth/github
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in GitHub authentication will involve redirecting
+//   the user to github.com.  After authorization, GitHubwill redirect the user
+//   back to this application at /auth/github/callback
+app.get('/auth/github',
+    github.passport.authenticate('github'),
+    function (req, res) {
+        // The request will be redirected to GitHub for authentication, so this
+        // function will not be called.
+    });
 
+// GET /auth/github/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.get('/auth/github/callback',
+    github.passport.authenticate('github', {
+        failureRedirect: '/login'
+    }),
+    function (req, res) {
+        res.redirect('/#/create');
+    });
 
-    /*  ================================================================  */
-    /*  Helper functions.                                                 */
-    /*  ================================================================  */
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
-    /**
-     *  Set up server IP address and port # using env variables/defaults.
-     */
-    self.setupVariables = function() {
-        //  Set the environment variables we need.
-        self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-        if (typeof self.ipaddress === "undefined") {
-            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-            //  allows us to run/test the app locally.
-            console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-            self.ipaddress = "127.0.0.1";
-        };
-    };
-
-
-    /**
-     *  Populate the cache.
-     */
-    self.populateCache = function() {
-        if (typeof self.zcache === "undefined") {
-            self.zcache = { 'index.html': '' };
-        }
-
-        //  Local cache for static content.
-        self.zcache['index.html'] = fs.readFileSync('./index.html');
-    };
-
-
-    /**
-     *  Retrieve entry (content) from cache.
-     *  @param {string} key  Key identifying content to retrieve from cache.
-     */
-    self.cache_get = function(key) { return self.zcache[key]; };
-
-
-    /**
-     *  terminator === the termination handler
-     *  Terminate server on receipt of the specified signal.
-     *  @param {string} sig  Signal to terminate on.
-     */
-    self.terminator = function(sig){
-        if (typeof sig === "string") {
-           console.log('%s: Received %s - terminating sample app ...',
-                       Date(Date.now()), sig);
-           process.exit(1);
-        }
-        console.log('%s: Node server stopped.', Date(Date.now()) );
-    };
-
-
-    /**
-     *  Setup termination handlers (for exit and a list of signals).
-     */
-    self.setupTerminationHandlers = function(){
-        //  Process on exit and signals.
-        process.on('exit', function() { self.terminator(); });
-
-        // Removed 'SIGPIPE' from the list - bugz 852598.
-        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-        ].forEach(function(element, index, array) {
-            process.on(element, function() { self.terminator(element); });
+app.post('/create', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.send({
+            'error': 'Login required'
         });
-    };
+        return;
+    }
+    github.conn(req).gists.create({
+        description: req.body.project.title,
+        public: "true",
+        files: {
+            'makehub': {
+                "content": projectParser.encode(req.body.project)
+            },
+            'makehub.json': {
+                "content": JSON.stringify(req.body.project)
+            }
+        }
+    }, function (err, gist) {
+        if (err) {
+            res.send({
+                'error': JSON.parse(err.message).message
+            })
+        } else if (!gist.files['makehub']) {
+            res.send({
+                'error': 'This is not a makehub project.'
+            })
+        } else {
+            var project = projectParser.parse(gist);
+            res.send(project);
+        }
+    });
+});
 
-
-    /*  ================================================================  */
-    /*  App server functions (main app logic here).                       */
-    /*  ================================================================  */
-
-    /**
-     *  Create the routing table entries + handlers for the application.
-     */
-    self.createRoutes = function() {
-        self.routes = { };
-
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        };
-
-        self.routes['/'] = function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(self.cache_get('index.html') );
-        };
-    };
-
-
-    /**
-     *  Initialize the server (express) and create the routes and register
-     *  the handlers.
-     */
-    self.initializeServer = function() {
-        self.createRoutes();
-        self.app = express.createServer();
-
-        //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
+app.post('/project/:projectId', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.send({
+            'error': 'Login required'
+        });
+        return;
+    }
+    var options = {
+        id: req.params.projectId,
+        description: req.body.project.title,
+        files: {
+            'makehub': {
+                "content": projectParser.encode(req.body.project)
+            },
+            'makehub.json': {
+                "content": JSON.stringify(req.body.project)
+            }
         }
     };
-
-
-    /**
-     *  Initializes the sample application.
-     */
-    self.initialize = function() {
-        self.setupVariables();
-        self.populateCache();
-        self.setupTerminationHandlers();
-
-        // Create the express server and routes.
-        self.initializeServer();
-    };
-
-
-    /**
-     *  Start the server (starts up the sample application).
-     */
-    self.start = function() {
-        //  Start the app on the specific interface (and port).
-        self.app.listen(self.port, self.ipaddress, function() {
-            console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), self.ipaddress, self.port);
+    github.conn(req).gists.edit(
+        options, function (err, gist) {
+            if (err) {
+                res.send({
+                    'error': JSON.parse(err.message).message
+                })
+            } else if (!gist.files['makehub']) {
+                res.send({
+                    'error': 'This is not a makehub project.'
+                })
+            } else {
+                var project = projectParser.parse(gist);
+                res.send(project);
+            }
         });
-    };
+});
 
-};   /*  Sample Application.  */
+app.get('/project/:projectId', function (req, res) {
+    console.log([req.params.userId, req.params.projectId, 'raw'].join('/'));
+    var currentlyLoggedInUser = req.user ? req.user._json.login : null;
+    // https://api.github.com/gists/4224228
+    github.conn(req).gists.get({
+            id: req.params.projectId
+        },
+        function (err, gist) {
+            console.log(err)
+            console.log(gist)
+            if (err) {
+                res.send({
+                    'error': JSON.parse(err.message).message
+                })
+            } else if (!gist.files['makehub']) {
+                res.send({
+                    'error': 'This is not a makehub project.'
+                })
+            } else {
 
+                var project = projectParser.parse(gist);
+                project.ownedByMe = currentlyLoggedInUser == gist.user.login;
 
+                var opts = {
+                    urls: project.urls,
+                    maxWidth: 450
+                };
 
-/**
- *  main():  Main code.
- */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
+                project['urls'].forEach(function(media, index) {
+                    var replaceValue = "<img src='" + media.replace("http:","https:") + "'>";
+                    project['content'] = project['content'].replace("{{" + index + "}}", replaceValue);
+                });
 
+                console.log(project);
+                res.send(project);
+
+            }
+        }
+    );
+});
+
+app.post('/project/fork/:projectId', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.send({
+            'error': 'Login required'
+        });
+        return;
+    }
+
+    console.log("FORKING project " + req.params.projectId);
+    github.conn(req).gists.fork({
+            id: req.params.projectId
+        },
+        function (err, gist) {
+            console.log(err)
+            console.log(gist)
+            if (err) {
+                res.send({
+                    'error': JSON.parse(err.message).message
+                })
+            } else {
+                res.send({
+                    id: gist.id
+                });
+            }
+        }
+    );
+});
+
+app.post('/my_projects', function (req, res) {
+    github.conn(req).gists.getFromUser({
+            user: req.user._json.login
+        },
+        function (err, res2) {
+            res.contentType('json');
+            var makeHubProjects = [];
+            res2.forEach(function (gist, index) {
+                if (gist.files['makehub']) {
+                    console.log(gist)
+                    var project = projectParser.parse(gist);
+                    makeHubProjects.push(project);
+                }
+            });
+            res.send({
+                projects: makeHubProjects
+            });
+        }
+    );
+});
+
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000, process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "0.0.0.0");
+
+// Simple route middleware to ensure user is authenticated.
+//   Use this route middleware on any resource that needs to be protected.  If
+//   the request is authenticated (typically via a persistent login session),
+//   the request will proceed.  Otherwise, the user will be redirected to the
+//   login page.
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login')
+}
