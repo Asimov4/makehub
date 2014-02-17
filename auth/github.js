@@ -13,10 +13,6 @@ var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 var HOSTNAME = process.env.MAKEHUB_HOSTNAME;
 
-var GITHUB_CLIENT_ID = '4675545a6c343a326a94';
-var GITHUB_CLIENT_SECRET = 'b83650525b79e323af52f2f4f594928c1281c966';
-var HOSTNAME = 'http://rhcloud-devnook.rhcloud.com';
-
 
 // Update github api connexion parameters
 // from command line arguments
@@ -31,9 +27,6 @@ process.argv.forEach(function(val, index, array) {
     HOSTNAME = val.split('=')[1];
   }
 });
-
-console.log(process.env)
-console.log(HOSTNAME)
 
 
 // Set up a Github connexion api object
