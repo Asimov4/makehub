@@ -52,8 +52,10 @@
             <div class="row centered">
                 <div ng-repeat="project in featuredProjects" class="col-md-4" style="margin-bottom: 30px">
                     <a href="/#/project/{{project.id}}">
+                        <div class="featured featured-wrapper" style="background-image:url('/img/thumbnail.jpg')">
                         <div class="featured img-thumbnail" style="background-image:url('{{ project.pictureURL }}')">
                             <p style="color: white; font-size: 1.3em" align="center">{{project.title}}</p>
+                        </div>
                         </div>
                     </a>
                 </div>
