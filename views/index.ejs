@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="/css/bootswatch.css">
-    
+
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
-    
+
 
     <link rel="stylesheet" href="/css/style.css">
 
 
 
-    
+
 </head>
 <body>
 
@@ -43,7 +43,7 @@
                 </li>
                 <% } %>
             </ul>
-            <nav class="pull-right">
+            <nav class="pull-right"><a href="#">{{user}}</a>aaa
                 <% if (!user) { %>
                 Welcome! Please sign in. <a href="/auth/github" class="btn btn-primary navbar-btn">Sign In</a>
                 <% } else { %>

@@ -51,6 +51,8 @@ app.configure(function () {
 
 
 app.get('/', function (req, res) {
+    console.log('----------')
+    console.log(req.user)
     res.render('index', {
         user: req.user,
         hostname: github.HOSTNAME
@@ -79,7 +81,7 @@ app.get('/auth/github/callback',
         failureRedirect: '/login'
     }),
     function (req, res) {
-        res.redirect('/#/create');
+        res.redirect('/');
     });
 
 app.get('/logout', function (req, res) {
