@@ -6026,25 +6026,30 @@ td.hidden-sm-inline {
   font-weight: 300;
   color: #333;
 }
-.homepage #headerwrap h2,
-.homepage #headerwrap h1 {
+.homepage h2,
+.homepage h1 {
   color: #FFF;
   font-weight: 300;
   letter-spacing: 3px;
 }
-.homepage #headerwrap h1 {
+.homepage h1 {
   font-size: 70px;
   margin-top: 100px;
 }
-.homepage #headerwrap h2 {
+.homepage h2 {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-.homepage #headerwrap h4 {
+.homepage h4 {
   font-weight: 700;
   margin: 20px 0 30px 0;
+}
+@media (max-width: 991px) {
+  .homepage h1 {
+    font-size: 30px;
+  }
 }
 .homepage .centered {
   text-align: center;
