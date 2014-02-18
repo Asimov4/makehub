@@ -1,11 +1,11 @@
 <div class="row section">
     <div class="col-md-10 col-lg-offset-1">
-        <img src="{{ project.picture }}" class="cover-image"/>
+        <img src="{{ project.picture }}" class="cover-image" ng-show="project.picture"/>
         <h3>Objective</h3>
         {{project.objective}}
         <p>Duration: {{project.duration}} | Targeted age group: {{project.ageGroup}}</p>
     </div>
-</div>  
+</div>
 
 <div class="row materials section-header">
     <div class="col-md-10 col-lg-offset-1">
@@ -27,7 +27,7 @@
         <h2>Steps</h2>
     </div>
 </div>
-        
+
 <div class="row steps section" ng-repeat="(i,step) in project.steps">
     <div class="col-md-10 col-lg-offset-1">
         <div>
@@ -51,4 +51,3 @@
         <p>{{project.notes}}</p>
     </div>
 </div>
-              

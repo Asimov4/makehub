@@ -1,78 +1,6 @@
-    <style type="text/css">
 
-
-
-        #headerwrap {
-            background-image: url('/img/banner_green.png');
-            background-size: 100% 100%;
-            height: 400px;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Raleway";
-            font-weight: 300;
-            color: #333;
-
-        }
-
-        #headerwrap h2,
-        #headerwrap h1 {
-            color: #FFF;
-            font-weight: 300;
-            letter-spacing: 3px;
-        }
-
-        #headerwrap h1 {
-            font-size: 70px;
-            margin-top: 100px;
-
-        }
-        #headerwrap h2 {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        h4 {
-            font-weight: 700;
-            margin: 20px 0 30px 0;
-        }
-
-        .centered {
-            text-align: center;
-        }
-
-        .homepage-section p {
-            font-family: "Lato", sans-serif;
-        }
-
-        
-        
-        .intros {
-            background-color: #F2F2F2;
-            padding-top: 0;
-        }
-
-        
-
-        .projects {
-            background-color: #E0E0E0;
-        }
-
-        
-
-        .homepage-section {
-            padding: 50px 0;
-        }
-        
-        .homepage-section .fa{
-         color: #00be9b; 
-     }
-
-     
-</style>
-<div ng-controller="ChatController">
+<div class="homepage">
+    <div>
         <div id="headerwrap">
             <div class="container">
                 <div class="row centered">
@@ -84,16 +12,16 @@
             </div>
         </div>
     </div>
-    
+
     <div id="intros">
         <div class="container homepage-section">
             <div class="row centered">
-    
+
                 <div class="col-lg-4">
                     <i class="fa fa-heart"></i><h4>WHAT IS MAKEHUB?</h4>
                     <p>We’re improving hands-on S.T.E.A.M education by reducing the friction associated with planning educational maker projects. We're doing this by developing on online platform for makers and educators.</p>
                 </div>
-    
+
                 <div class="col-lg-4">
                     <i class="fa fa-github"></i><h4>HOW TO USE?</h4>
                     <p>In order to use MakeHub, you need to
@@ -109,13 +37,12 @@
                         <a href="#">learn more</a>
                     </p>
                 </div>
-    
+
             </div>
         </div>
     </div>
 
     <div class="projects homepage-section">
-
         <div class="container" ng-controller="FeaturedCtrl">
             <div class="row centered">
 
@@ -137,14 +64,16 @@
     </div>
 
     <div class="footer homepage-section">
-
         <div class="container">
             <div class="row centered">
                 <div class="col-lg-12">
-                  <i class="fa fa-twitter"></i>
-                  <i class="fa fa-facebook"></i>
-                  <i class="fa fa-google-plus"></i>
+                  <a href="https://twitter.com/afrimakers"><i class="fa fa-twitter"></i></a>
+                  <a href="https://www.facebook.com/groups/hackidemia/"><i class="fa fa-facebook"></i></a>
+                  <a href="https://plus.google.com/u/1/communities/115542690290964006487">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
                 </div>
             </div>
         </div>
     </div>
+</div>
