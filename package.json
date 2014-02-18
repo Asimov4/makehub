@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "Github for maker projects",
   "main": "server.js",
-  "repository": "",
-  "author": {
-    "name": "Thibaut Labarre",
-    "email": "asimov4@gmail.comg",
-    "url":  "http://www.openshift.com/"
-  },
   "repository": {
     "type": "git",
     "url": "https://gitub.com/openshift/origin-server"
+  },
+  "author": {
+    "name": "Thibaut Labarre",
+    "email": "asimov4@gmail.comg",
+    "url": "http://www.openshift.com/"
   },
   "engines": {
     "node": ">= 0.6.0",
@@ -25,10 +24,10 @@
     "passport": ">= 0.0.0",
     "passport-github": ">= 0.0.0",
     "ejs-locals": "~1.0.2",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "github": "~0.1.14"
   },
   "devDependencies": {},
   "bundleDependencies": [],
-
   "private": true
 }
