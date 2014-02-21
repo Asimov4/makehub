@@ -17,6 +17,9 @@
                 <a class="btn btn-primary pull-right"
                    ng-click="showForm=!showForm">
                    {{ showForm ? 'Cancel edit' : 'Edit project'}}</a>
+                <a class="btn btn-danger"
+                   ng-really-message="Are you sure you want to delete this project? This cannot be undone."
+                   ng-really-click="delete()">Delete this project</a>
             </div>
         </div>
     </div>

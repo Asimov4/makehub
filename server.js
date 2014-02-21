@@ -226,6 +226,33 @@ app.post('/project/fork/:projectId', function (req, res) {
     );
 });
 
+app.post('/project/delete/:projectId', function (req, res) {
+    if (!req.isAuthenticated()) {
+        res.send({
+            'error': 'Login required'
+        });
+        return;
+    }
+    
+    console.log("DELETING project " + req.params.projectId);
+    github.conn(req).gists.delete({
+            id: req.params.projectId
+        },
+        function (err, gist) {
+            if (err) {
+                console.log(err)
+                res.send({
+                    'error': JSON.parse(err.message).message
+                })
+            } else {
+                res.send({
+                    id: gist.id
+                });
+            }
+        }
+    );
+});
+
 app.post('/my_projects', function (req, res) {
     github.conn(req).gists.getFromUser({
             user: req.user._json.login
