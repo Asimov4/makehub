@@ -1,4 +1,4 @@
-// 
+//
 //Github api authentication handler
 //
 

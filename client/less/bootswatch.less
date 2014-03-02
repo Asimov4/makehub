@@ -1,0 +1,159 @@
+// United 3.0.3
+// Bootswatch
+// -----------------------------------------------------
+
+@import url("//fonts.googleapis.com/css?family=Ubuntu:400,700");
+@import "bootstrap.less";
+
+// Navbar =====================================================================
+
+// Buttons ====================================================================
+
+// Typography =================================================================
+
+// Tables =====================================================================
+
+// Forms ======================================================================
+
+// Navs =======================================================================
+
+.navbar-default {
+  .navbar-nav > li > a:hover,
+  .navbar-nav > li > a:focus {
+		background-color: @brand-primary;
+	}
+
+  .navbar-nav > .open > a,
+  .navbar-nav > .open > a:hover,
+  .navbar-nav > .open > a:focus {
+    background-color: @brand-primary;
+  }
+}
+
+
+
+// Indicators =================================================================
+
+// Progress bars ==============================================================
+
+// Containers =================================================================
+
+.cover-image{
+    width: 100%;
+    border: 10px solid #FFF;
+}
+
+.img-thumbnail {
+  background-color: transparent;
+}
+
+.featured-wrapper {
+  border-radius: 7px;
+}
+
+// Responsive utilities
+// -------------------------
+// More easily include all the states for responsive-utilities.less.
+.responsive-visibility-inline() {
+  display: inline !important;
+  table&  { display: table; }
+  tr&     { display: table-row !important; }
+  th&,
+  td&     { display: table-cell !important; }
+}
+
+.hidden-xs-inline {
+  .responsive-visibility-inline();
+  @media (max-width: @screen-xs-max) {
+    .responsive-invisibility();
+  }
+}
+.hidden-sm-inline {
+  .responsive-visibility-inline();
+  &.hidden-xs-inline {
+    @media (max-width: @screen-xs-max) {
+      .responsive-invisibility();
+    }
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .responsive-invisibility();
+  }
+}
+
+// Homepage ===================================================================
+
+.homepage {
+
+  #headerwrap {
+      background-image: url('/img/banner_green.png');
+      background-size: 100% 100%;
+      height: 400px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-family: "Raleway";
+      font-weight: 300;
+      color: #333;
+  }
+
+
+    h2, h1 {
+      color: #FFF;
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+
+
+    h1 {
+      font-size: 70px;
+      margin-top: 100px;
+
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h4 {
+        font-weight: 700;
+        margin: 20px 0 30px 0;
+    }
+
+     @media (max-width: @screen-sm-max) {
+        h1 {
+          font-size: 30px;
+        }
+      }
+
+
+
+  .centered {
+      text-align: center;
+  }
+
+  .homepage-section p {
+      font-family: "Lato", sans-serif;
+  }
+
+  .intros {
+      background-color: #F2F2F2;
+      padding-top: 0;
+  }
+
+  .projects {
+      background-color: #E0E0E0;
+  }
+
+  .homepage-section {
+      padding: 50px 0;
+  }
+
+  .homepage-section .fa {
+    color: #00be9b;
+    font-size: 1.5em;
+  }
+
+}

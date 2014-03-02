@@ -40,7 +40,7 @@ angular.module('makeHub.controllers', ['flash'])
   }])
   .controller('ProjectCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
-      
+
         $scope.projectId = $routeParams.projectId;
         var projectUrl = ['project', $routeParams.projectId].join('/');
         $http.get(projectUrl).success(function(data) {
@@ -51,7 +51,7 @@ angular.module('makeHub.controllers', ['flash'])
             $scope.project = data;
           }
         });
-        
+
         $scope.fork = function () {
           var projectUrl = ['project', 'fork', $scope.project.id].join('/');
           $.ajax({
@@ -118,7 +118,7 @@ angular.module('makeHub.controllers', ['flash'])
     $scope.project = {}
     $scope.project.steps = [{ description: "Description", media: "" }];
     $scope.project.materials = [{ item: 'Edit me!', description: "Edit me!", quantity: 0, price: "10€", link: "" }];
-      
+
     $scope.create = function() {
       var project = $scope.project;
       $.ajax({
@@ -186,25 +186,25 @@ angular.module('makeHub.controllers', ['flash'])
         var entries = query.feed.entry;
         $.each(entries, function(index,entry) {
             if (entry.title.$t.indexOf("Row") == -1) {
-                console.log(entry);
                 var content = entry.content.$t.split(", ");
+                var pictureUrl = content[1].replace('pictureurl: ','');
+                var pictureUrl = pictureUrl === 'undefined' ? '/img/thumbnail.jpg' : pictureUrl;
                 $scope.featuredProjects.push({
                     "id": entry.title.$t,
                     "title": content[0].replace('title: ',''),
-                    "pictureURL": content[1].replace('pictureurl: ','')
+                    "pictureURL": pictureUrl
                     });
             }
         });
-        console.log($scope.featuredProjects);
         $scope.$apply();
     };
-     
+
     var retrieveFeaturedProjects = function() {
         // Retrieve the JSON feed.
         var script = document.createElement('script');
-        
+
         script.setAttribute('src', 'https://spreadsheets.google.com/feeds/list/0Am2p5Wh_lWpndHhDX1Q5azBuXzk1amNXN2dmQm9WTVE/od6/public/values?alt=json-in-script&callback=displayFeaturedProjects');
-        
+
         script.setAttribute('id', 'jsonScript');
         script.setAttribute('type', 'text/javascript');
         document.documentElement.firstChild.appendChild(script);

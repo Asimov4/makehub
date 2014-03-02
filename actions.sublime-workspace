@@ -1,0 +1,630 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rende",
+				"renderSnippet"
+			],
+			[
+				"get",
+				"getValue"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"js",
+				"jsonLd"
+			],
+			[
+				"op",
+				"operation_"
+			],
+			[
+				"S",
+				"Square"
+			],
+			[
+				"R",
+				"RateActionWidget"
+			],
+			[
+				"Ac",
+				"ActionWidget"
+			],
+			[
+				"act",
+				"actSbx"
+			],
+			[
+				"inde",
+				"entityIndex"
+			],
+			[
+				"G",
+				"Google"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"ico",
+				"icons"
+			],
+			[
+				"price",
+				"price_level"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"gogle",
+				"google_now_date"
+			],
+			[
+				"in",
+				"info"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"str",
+				"strftime"
+			],
+			[
+				"pro",
+				"project"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cus",
+				"custom-search"
+			],
+			[
+				"stru",
+				"structured_data"
+			],
+			[
+				"kd-",
+				"kd-searchfield"
+			],
+			[
+				"xml",
+				"xmltodict"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/ewag/projects/ActionsSandbox/parser.py",
+			"settings":
+			{
+				"buffer_size": 1825,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ewag/projects/ActionsSandbox/js/main.js",
+			"settings":
+			{
+				"buffer_size": 6318,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ewag/projects/ActionsSandbox/css/main.css",
+			"settings":
+			{
+				"buffer_size": 377,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ewag/projects/ActionsSandbox/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 3748,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ewag/projects/ActionsSandbox/main.py",
+			"settings":
+			{
+				"buffer_size": 5577,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"repl: s",
+				"SublimeREPL: Shell"
+			],
+			[
+				"sub",
+				"SublimeREPL: Shell"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"HTML: Encode Special Characters"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ewag/projects/makehub/views/index2.ejs",
+		"/Users/ewag/projects/ActionsSandbox/templates/index2.html",
+		"/Users/ewag/Downloads/small/Theme/assets/css/main.css",
+		"/Users/ewag/projects/ActionsSandbox/app.yaml",
+		"/Users/ewag/projects/ActionsSandbox/js/RDFaProcessor.min.1.2.0.js",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap/variables.less",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap/type.less",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap/buttons.less",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap/mixins.less",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap-3.0.3/customize.html",
+		"/Users/ewag/projects/ActionsSandbox/less/bootstrap/css/bootstrap.min.css",
+		"/Users/ewag/projects/FreebasePlaces/js/ui.js",
+		"/Users/ewag/projects/FreebasePlaces/less/card.less",
+		"/Users/ewag/projects/knowledge_graph_maps/web/less/flash.less",
+		"/Users/ewag/projects/knowledge_graph_maps/web/index2.html",
+		"/Users/ewag/Downloads/gist7658039-3c2286e7aec21ae303a356f1e3a67043d812d3a4/index.html",
+		"/Users/ewag/Downloads/logo.svg",
+		"/Users/ewag/projects/devfest2013/app.yaml",
+		"/home/ewag/projects/devrel/lrmi/main.py",
+		"/Users/ewag/projects/devfest2013/slide_config.js",
+		"/Users/ewag/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/ewag/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ewag/projects/google-now/css/kd_components.css",
+		"/Users/ewag/projects/google-now/js/main.js",
+		"/Users/ewag/projects/google-now/README.md",
+		"/Users/ewag/projects/makehub/node_modules/github/api/v3.0.0/gists.js",
+		"/Users/ewag/projects/makehub/client/js/app.js",
+		"/Users/ewag/projects/makehub/project-parser.js",
+		"/Users/ewag/projects/makehub/server.js",
+		"/Users/ewag/projects/makehub/credentials.js",
+		"/Users/ewag/Documents/projects/maps/index2.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/topical_cse_bak.md",
+		"/home/ewag/topical_cse.md",
+		"/Users/ewag/Documents/topical_cse.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/topical_cse.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/start.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/_book.yaml",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/_gists.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/linked_cse.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/quality/prose/templates/docs/csbe_tos.cs",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/performance.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/libraries.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/v1/cse/list.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/reference/cse/list.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/using_rest.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/introduction.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/json-api/v1/overview.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/_redirects.yaml",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/v1/getting_started.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/glossary.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/v1/_api_variables.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/v1/overview.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/tutorial/creatingcse.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/api.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/basics.html",
+		"/usr/local/google/home/ewag/.config/sublime-text-2/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/tutorial/implementingsearchbox.md",
+		"/usr/local/google/home/ewag/csebranding.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/_local_variables.html",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/docs/overview.md",
+		"/home/ewag/projects/devrel/docs/cse/google3/googledata/devsite/content/en/custom-search/index.html",
+		"/home/ewag/projects/devrel/gae-template/appengine-helloworld-python/app.yaml",
+		"/usr/local/google/home/ewag/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/usr/local/google/home/ewag/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/ewag/projects/devrel/gae-template/appengine-helloworld-python/index.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"urllib",
+			".on(",
+			"on(",
+			"pre",
+			"h2",
+			"url",
+			"supporte",
+			"\\')\"",
+			"parseJsonLd",
+			"renderJson",
+			"craw",
+			"renderJson",
+			"renderService",
+			"fbmap.iconAnchorPoints",
+			"locString",
+			"fbmap.markers",
+			"category",
+			"fbmap.allCategories",
+			"fbmap.currentLatLng",
+			"setF",
+			"setf",
+			"cardContent",
+			"hide",
+			"currentLatLng",
+			"bounds",
+			"SLIDE_CONFIG",
+			"slide_con",
+			"config",
+			"ever",
+			"foo",
+			"code",
+			"<img src=\"images/sms.png\" style=\"position: absolute;width: 120px;bottom: 30px;left: 370px;\">",
+			"img src=\"images/plus.png\" style=\"position: absolute;width: 120px;bottom: 30px;left: 370px;\">",
+			"<slide>\n    <article>\n        <h2>\n          How Knowledge Graph works\n        </h2>\n        <img src=\"https://docs.google.com/a/google.com/drawings/d/1V505oM1B4xzSZY1jjgq_Qal8-oQuByHjG19xqx9q9RA/pub?w=960&amp;h=720\">\n    </article>\n  </slide>",
+			"<slide class=\"fill nobackground\" style=\"background-image: url(images/screenshots/chuck_norris_graph.png)\">\n  <aside class=\"note\">\n      <section>\n        <ul>\n      <li>What is a Knowledge Graph</li>\n      <li>A collection of real-world entities.</li>\n      <li>Interesting facts about those entities.</li>\n      <li>Meaningful relationships between the entities.</li>\n      <li>High quality.</li>\n      <li>De-duplicated.</li>\n      <li>Searchable.</li>\n        </ul>\n      </section>\n    </aside>\n  </slide>",
+			"jso",
+			"prett",
+			".map-button",
+			"droi",
+			"open",
+			".map-button-red {\n	margin-bottom: 0;\n  outline: none;\n}",
+			"kennedymedia=\"screen\"",
+			">\n",
+			"rate",
+			"def get(self, token):\n      channel.send_message(token, 'Received a call! 200 OK ' + self.request.path)\n      self.response.out.write('success')\n",
+			"loca",
+			"https",
+			"this.client ",
+			"clien",
+			"httpsen",
+			"js",
+			"<<",
+			">>",
+			"GITHUB_CLIENT_ID",
+			"serve",
+			"cardHtml",
+			"ali",
+			";\n",
+			"front",
+			"font",
+			"card",
+			".img",
+			"thum",
+			"web",
+			"=\"",
+			"meta",
+			"<li>**=** &rarr; %3D</li>",
+			"<<<",
+			">>>",
+			"&gt;",
+			"&lt;",
+			"atom",
+			"{",
+			"<figure>\n  <img src=\"/custom-search/images/start_google_wheels_result.png\" alt=\"Standard Google search results\" width=\"613\" height=\"475\" border=\"0\" />\n  <figcaption>Searching for &quot;wheel&quot; on Google search gets results about all kinds of wheels.</figcaption>\n</figure>",
+			"ul class=\"teaches\">{% for d in r.PageMap.DataObject %}{% if d['@type'] == 'alignmentobject' %}\n        {% for a in d.Attribute %}\n          {% if a['@name'] == 'targetname' %}\n            <li>{{a['@value']}}</li>\n          {% endif %}\n        {% endfor %}\n      {% endif %}{% endfor %}</ul>",
+			"ul:empty {\n      display:none;\n    }\n",
+			"\">{%",
+			".test{\n      width: 20px;\n      height: 20px;\n      background: lime;\n    }",
+			"p",
+			"#kd-search a img {\n      margin-top: 2px;\n    }",
+			" {{r.U}}",
+			"type",
+			"%}\n",
+			"}}",
+			"teaches_template",
+			"result",
+			">')\n",
+			"'])",
+			":')",
+			"br",
+			")\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			".button",
+			"",
+			">",
+			"<"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/ewag/projects/ActionsSandbox/parser.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1825,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								964,
+								964
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 319.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/ewag/projects/ActionsSandbox/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2877,
+								2877
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1115.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/ewag/projects/ActionsSandbox/css/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 377,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								373,
+								373
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/ewag/projects/ActionsSandbox/templates/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3748,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								457,
+								457
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/ewag/projects/ActionsSandbox/main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5577,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3595,
+								3595
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1457.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "actions.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
