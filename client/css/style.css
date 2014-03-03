@@ -123,3 +123,7 @@ margin: 0 0.3em 0 .5em;
 .notes.section-header {
     background-color: #666;
 }
+
+.btn[type="file"]:hover {
+   color: #6E6E6E;
+}

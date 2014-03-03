@@ -2,7 +2,10 @@ var myApp = angular.module('makeHub', [
     'makeHub.controllers',
     'ngSanitize',
     'ngRoute',
+    'angularFileUpload',
     'flash']);
+
+
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -29,4 +32,4 @@ myApp.config(['$routeProvider',
       otherwise({
         redirectTo: '/home'
       });
-  }]);
+  }])

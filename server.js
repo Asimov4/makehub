@@ -10,6 +10,7 @@ var async = require('async');
 var express = require('express');
 var util = require('util');
 var _ = require('underscore');
+var restler = require('restler')
 
 // MakeHub imports
 var github = require('./auth/github');
@@ -233,7 +234,7 @@ app.post('/project/delete/:projectId', function (req, res) {
         });
         return;
     }
-    
+
     console.log("DELETING project " + req.params.projectId);
     github.conn(req).gists.delete({
             id: req.params.projectId
@@ -272,6 +273,19 @@ app.post('/my_projects', function (req, res) {
             });
         }
     );
+});
+
+app.post('/upload_picture', function (req, res) {
+    var file = req.files.file
+    restler.post("http://deviantsart.com", {
+        multipart: true,
+        data: {
+            "filename": restler.file(file.path, file.name,
+                                     file.size, null, "image/jpg")
+        }
+    }).on("complete", function(data) {
+        res.send(data);
+    });
 });
 
 app.listen(process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000, process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "0.0.0.0");
