@@ -68,13 +68,7 @@
             <td><p><a class="btn btn-default">{{i+1}}.</a></p></td>
             <td>
               <p><input class="form-control" type="text" ng-model="step.description"></p>
-              <p><input class="form-control" type="text" ng-model="step.media" placeholder="Paste image link here" ></p>
-              <p class="help-block">You can paste any image link in here. Make sure the image actually displays below.
-              If your image is not on the web yet, you can upload it on <a href="http://postimage.org">postimage.org</a>.
-                Select Resize: 640x480 (for message boards) and click upload.
-                Once the image is uploaded, copy the Direct Link here.
-              </p>
-              <p ng-hide="!step.media"><img src="{{ step.media }}"/></p>
+              <div picture-upload info="step"></div>
               <p>
                 <textarea class="form-control" rows="2" ng-model="step.notes" id="notes" placeholder="Additional notes on this step..."></textarea>
               </p>

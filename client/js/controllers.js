@@ -44,7 +44,6 @@ angular.module('makeHub.controllers', ['flash'])
         $scope.projectId = $routeParams.projectId;
         var projectUrl = ['project', $routeParams.projectId].join('/');
         $http.get(projectUrl).success(function(data) {
-          console.log(data)
           if (data.error) {
             flash('danger', data.error);
           } else {
@@ -116,7 +115,7 @@ angular.module('makeHub.controllers', ['flash'])
   .controller('CreateCtrl', ['$scope', 'flash', '$routeParams', '$http', '$route',
   function($scope, flash, $routeParams, $http, $route) {
     $scope.project = {}
-    $scope.project.steps = [{ description: "Description", media: "" }];
+    $scope.project.steps = [{ description: "Description", picture: "" }];
     $scope.project.materials = [{ item: 'Edit me!', description: "Edit me!", quantity: 0, price: "10€", link: "" }];
 
     $scope.create = function() {
@@ -244,6 +243,7 @@ angular.module('makeHub.controllers', ['flash'])
               file: file
             }).success(function(data, status, headers, config) {
               scope.project.picture = data.url;
+              scope.project.media = data.url;
               scope.placeholder = 'Paste a link to an image';
               scope.errorMsg = '';
             }).error(function() {

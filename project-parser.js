@@ -22,6 +22,11 @@ module.exports = {
                 project['urls'] = urls;
             }
             project = _.extend(project,JSON.parse(gist.files['makehub.json'].content));
+            var steps = project.steps.map(function(step) {
+              step['picture'] = step['media'];
+              return step;
+            })
+            project.steps = steps;
             project['content'] = converter.makeHtml(projectGist);
             // We need to reset the following values as they may have been overriden by the makehub.json file
             project['id'] = gist.id;
