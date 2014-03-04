@@ -1,0 +1,16 @@
+<input type="text"
+    class="form-control"
+    id="picture"
+    placeholder="{{placeholder}}"
+    ng-model="project.picture" >
+<p>Or, upload a new image:</p>
+<input type="file" class="btn" ng-file-select="onFileSelect($files)" >
+<p class="text-danger" ng-show="errorMsg">{{errorMsg}}</p>
+<p class="help-block" ng-show="errorMsg">
+  Please provide a link to the image manually in the box above. Make sure the image actually displays below.
+  If your image is not on the web yet, you can upload it on <a href="http://postimage.org">postimage.org</a>.
+  Select Resize: 640x480 (for message boards) and click upload.
+  Once the image is uploaded, copy the Direct Link here.
+</p>
+<img src="{{project.picture}}" ng-show="project.picture">
+

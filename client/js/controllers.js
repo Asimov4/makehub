@@ -224,4 +224,34 @@ angular.module('makeHub.controllers', ['flash'])
             });
         }
     }
-  }]);
+  }])
+  .directive('pictureUpload', function($upload) {
+    // This is using https://github.com/danialfarid/angular-file-upload module.
+    return {
+      templateUrl: 'partials/picture-upload.html',
+      scope: {
+        project: '=info'
+      },
+      link: function (scope, element) {
+        scope.placeholder = 'Paste a link to an image';
+        scope.onFileSelect = function($files) {
+          scope.placeholder = 'Loading...'
+          for (var i = 0; i < $files.length; i++) {
+            var file = $files[i];
+            scope.upload = $upload.upload({
+              url: '/upload_picture',
+              method: 'POST',
+              file: file
+            }).success(function(data, status, headers, config) {
+              scope.project.picture = data.url;
+              scope.placeholder = 'Paste a link to an image';
+              scope.errorMsg = '';
+            }).error(function() {
+              scope.placeholder = 'Paste a link to an image';
+              scope.errorMsg = 'Unable to upload the image.';
+            })
+          }
+        };
+      }
+    };
+  });

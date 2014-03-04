@@ -2,25 +2,26 @@
 
     <flash-messages></flash-messages>
 
-
     <div class="row section" style="border:none;">
         <div class="col-md-7 col-lg-offset-1">
             <h1>{{project.title}}</h1>
             <p><a href="/#/project/{{project.id}}">{{project.user}}/{{project.id}}</a></p>
         </div>
         <div class="col-lg-3">
-              <a class="btn btn-primary pull-right"
+          <div class="btn-group pull-right" >
+              <button class="btn btn-primary"
                  ng-hide="project.ownedByMe"
-                 ng-click="fork()">Fork this project</a>
+                 ng-click="fork()">Fork this project</button>
 
             <div ng-hide="!project.ownedByMe">
-                <a class="btn btn-primary pull-right"
+                <button class="btn btn-primary"
                    ng-click="showForm=!showForm">
-                   {{ showForm ? 'Cancel edit' : 'Edit project'}}</a>
-                <a class="btn btn-danger pull-right"
+                   {{ showForm ? 'Cancel edit' : 'Edit project'}}</button>
+                <button class="btn btn-primary"
                    ng-really-message="Are you sure you want to delete this project? This cannot be undone."
-                   ng-really-click="delete()">Delete this project</a>
+                   ng-really-click="delete()">Delete this project</button>
             </div>
+          </div>
         </div>
     </div>
 
