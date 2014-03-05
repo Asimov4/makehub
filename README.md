@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nningego/makehub.png?branch=master)](https://travis-ci.org/nningego/makehub)
+
 ```
   __  __       _        _           _
  |  \/  |     | |      | |         | |
@@ -21,7 +23,7 @@ To get a github-client-id and a github-client-secret, go to https://github.com/s
 
 ## Production server
 
-http://makehub-milestone.rhcloud.com/#/home
+http://www.makehub.io/#/home
 
 ## HacKIDemia
 
