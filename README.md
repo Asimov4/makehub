@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nningego/makehub.png?branch=master)](https://travis-ci.org/nningego/makehub)
+[![Build Status](https://travis-ci.org/Asimov4/makehub.png?branch=master)](https://travis-ci.org/Asimov4/makehub)
 
 ```
   __  __       _        _           _
