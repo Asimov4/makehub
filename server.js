@@ -166,8 +166,8 @@ app.get('/project/:projectId', function (req, res) {
             id: req.params.projectId
         },
         function (err, gist) {
-            console.log(err)
-            console.log(gist)
+            //console.log(err)
+            //console.log(gist)
             if (err) {
                 res.send({
                     'error': JSON.parse(err.message).message
@@ -190,8 +190,6 @@ app.get('/project/:projectId', function (req, res) {
                     var replaceValue = "<img src='" + media.replace("http:","https:") + "'>";
                     project['content'] = project['content'].replace("{{" + index + "}}", replaceValue);
                 });
-
-                console.log(project);
                 res.send(project);
 
             }
