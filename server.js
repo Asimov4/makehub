@@ -1,5 +1,8 @@
 // # MakeHub server
 //
+// New Relic Metrics import
+require('newrelic');
+
 // Core imports
 var http = require('http');
 var https = require('https');
