@@ -6,7 +6,7 @@ module.exports = {
     parse: function(gist, callback) {
         var project =  {
           'id': gist.id,
-          'user': gist.user.login,
+          'user': gist.owner.login,
           'description': gist.description,
           'urls': [],
           'raw': gist.files['makehub'].content
@@ -30,7 +30,7 @@ module.exports = {
             project['content'] = converter.makeHtml(projectGist);
             // We need to reset the following values as they may have been overriden by the makehub.json file
             project['id'] = gist.id;
-            project['user'] = gist.user.login;
+            project['user'] = gist.owner.login;
             project['description'] = gist.description;
         }
         return project;

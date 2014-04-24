@@ -182,7 +182,7 @@ app.get('/project/:projectId', function (req, res) {
             } else {
 
                 var project = projectParser.parse(gist);
-                project.ownedByMe = currentlyLoggedInUser == gist.user.login;
+                project.ownedByMe = currentlyLoggedInUser == gist.owner.login;
 
                 var opts = {
                     urls: project.urls,
