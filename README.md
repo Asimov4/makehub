@@ -27,7 +27,7 @@ To get a github-client-id and a github-client-secret, go to https://github.com/s
 
 ## Production server
 
-http://www.makehub.io/#/home
+http://makehub.eu
 
 It is hosted on an http://openshift.com gear.
 The domain name is at https://www.namecheap.com.
