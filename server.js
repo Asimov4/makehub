@@ -70,7 +70,6 @@ app.get('/', function (req, res) {
     res.render('index', {
         user: req.user,
         hostname: github.HOSTNAME,
-        title: req.i18n.__("Hello")
     });
 });
 
@@ -101,6 +100,15 @@ app.get('/auth/github/callback',
 
 app.get('/logout', function (req, res) {
     req.logout();
+    res.redirect('/');
+});
+
+app.get('/cn', function (req, res) {
+    res.cookie('locale', '"cn"', { maxAge: 90000, path: '/' });
+    res.redirect('/');
+});
+app.get('/en', function (req, res) {
+    res.clearCookie('locale');
     res.redirect('/');
 });
 

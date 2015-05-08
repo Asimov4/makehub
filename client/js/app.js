@@ -1,4 +1,5 @@
 var app = angular.module('makeHub', [
+    'ngCookies',
     'makeHub.controllers',
     'ngSanitize',
     'ngRoute',
@@ -13,8 +14,7 @@ app.config(['$routeProvider','$translateProvider',
     $translateProvider.useStaticFilesLoader({
       prefix:'/js/locales/',
       suffix: '.json'
-    }).preferredLanguage('cn');
-
+    }).preferredLanguage('en');
     $routeProvider.
       when('/project/:projectId', {
         templateUrl: 'partials/project.html',
@@ -40,6 +40,10 @@ app.config(['$routeProvider','$translateProvider',
       });
   }]);
 
-app.controller('ViewController', ['$scope', function ($scope) {
 
+app.controller('ViewController', ['$scope','$cookieStore','$translate', function ($scope,$cookieStore,$translate) {
+    var cookiesLocale = $cookieStore.get('locale');
+    if(cookiesLocale!==undefined){
+      $translate.use(cookiesLocale);
+    }
 }]);
