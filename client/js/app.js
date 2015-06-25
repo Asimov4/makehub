@@ -1,14 +1,20 @@
-var myApp = angular.module('makeHub', [
+var app = angular.module('makeHub', [
+    'ngCookies',
     'makeHub.controllers',
     'ngSanitize',
     'ngRoute',
     'angularFileUpload',
-    'flash']);
+    'flash',
+    'pascalprecht.translate']);
 
 
-
-myApp.config(['$routeProvider',
-  function($routeProvider) {
+app.config(['$routeProvider','$translateProvider',
+  function($routeProvider,$translateProvider) {
+    
+    $translateProvider.useStaticFilesLoader({
+      prefix:'/js/locales/',
+      suffix: '.json'
+    }).preferredLanguage('en');
     $routeProvider.
       when('/project/:projectId', {
         templateUrl: 'partials/project.html',
@@ -32,4 +38,12 @@ myApp.config(['$routeProvider',
       otherwise({
         redirectTo: '/home'
       });
-  }])
+  }]);
+
+
+app.controller('ViewController', ['$scope','$cookieStore','$translate', function ($scope,$cookieStore,$translate) {
+    var cookiesLocale = $cookieStore.get('locale');
+    if(cookiesLocale!==undefined){
+      $translate.use(cookiesLocale);
+    }
+}]);

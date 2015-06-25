@@ -1,0 +1,3 @@
+node_modules/
+.openshift/
+.newrelic_agent.log

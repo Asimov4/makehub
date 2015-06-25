@@ -23,7 +23,17 @@ To start the server, you'll need to pass in the following cmd line args to the `
 --github-client-secret=aaabbbccc111222333aaabbbccc111222333.
 ```
 
+after you have done `npm install`
+
 To get a github-client-id and a github-client-secret, go to https://github.com/settings/applications and register a new application.
+
+## About i18n
+
+To change the language to Chinese, visit `/cn`.
+
+To change back to English, visit `/en`.
+
+Translation JSON for server side: located at `/locales`; for client side: located at `/client/js/locales`.
 
 ## Production server
 

@@ -11,6 +11,7 @@ var path = require('path');
 // Third party modules import
 var async = require('async');
 var express = require('express');
+var I18n = require('i18n-2');
 var util = require('util');
 var _ = require('underscore');
 var restler = require('restler')
@@ -43,7 +44,18 @@ app.configure(function () {
     app.use(express.session({
         secret: 'keyboard cat'
     }));
+    I18n.expressBind(app, {
+        locales:['en','cn'],
+        cookieName: 'locale'
+    });
 
+    // This is how you'd set a locale from req.cookies.
+    // Don't forget to set the cookie either on the client or in your Express app.
+    app.use(function(req, res, next) {
+        //this changes it to chinese: document.cookie = "locale=cn";
+        req.i18n.setLocaleFromCookie(req);
+        next();
+    });
     // Initialize Passport!  Also use passport.session() middleware, to support
     // persistent login sessions (recommended).
     app.use(github.passport.initialize());
@@ -57,7 +69,7 @@ app.configure(function () {
 app.get('/', function (req, res) {
     res.render('index', {
         user: req.user,
-        hostname: github.HOSTNAME
+        hostname: github.HOSTNAME,
     });
 });
 
@@ -88,6 +100,15 @@ app.get('/auth/github/callback',
 
 app.get('/logout', function (req, res) {
     req.logout();
+    res.redirect('/');
+});
+
+app.get('/cn', function (req, res) {
+    res.cookie('locale', '"cn"', { maxAge: 90000, path: '/' });
+    res.redirect('/');
+});
+app.get('/en', function (req, res) {
+    res.clearCookie('locale');
     res.redirect('/');
 });
 

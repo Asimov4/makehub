@@ -23,16 +23,19 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
-    "express": "~3.4.4",
     "async": "~0.2.8",
-    "socket.io": "~0.9.14",
     "ejs": "~0.8.4",
+    "ejs-locals": "~1.0.2",
+    "express": "~3.4.4",
+    "github": "^0.2.4",
+    "i18n-2": "^0.4.6",
+    "newrelic": "~1.4.0",
+    "pagedown": "^1.1.0",
     "passport": ">= 0.0.0",
     "passport-github": ">= 0.0.0",
     "restler": "~3.2.0",
-    "ejs-locals": "~1.0.2",
-    "underscore": "~1.5.2",
-    "newrelic": "~1.4.0"
+    "socket.io": "~0.9.14",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {},
   "bundleDependencies": [],
